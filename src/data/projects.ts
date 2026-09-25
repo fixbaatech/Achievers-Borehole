@@ -18,6 +18,7 @@ import kemtaImage from "@/assets/achievers-borehole-kemta.png";
 import kotopoImage from "@/assets/achievers-borehole-kotopo.png";
 import obadaImage from "@/assets/achievers-borehole-obada.png";
 import obantokoImage from "@/assets/achievers-borehole-obantoko.png";
+import pansakeImage from "@/assets/hero-drilling.jpg";
 
 export type Project = {
   slug: string;
@@ -138,7 +139,7 @@ export const projects: Project[] = [
     image: kemtaImage,
   },
   {
-    slug: "pansake",
+    slug: "panseke",
     title: "210-Metre Borehole — Panseke, Abeokuta",
     location: "Panseke, Abeokuta",
     service: "Borehole Drilling",
