@@ -81,6 +81,7 @@ const stats = [
 function Home() {
   return (
     <>
+      {/* HERO SECTION */}
       <section className="surface-dark relative flex min-h-[92vh] items-end overflow-hidden pt-32 pb-16 md:pb-24">
         <img
           src={heroDrilling}
@@ -105,7 +106,6 @@ function Home() {
             schools and industries across Ogun State.
           </p>
           <div className="rise mt-9 flex flex-wrap gap-3">
-            {/* UPDATED WHATSAPP BUTTON */}
             <a 
               href={whatsappLink} 
               target="_blank" 
@@ -115,7 +115,6 @@ function Home() {
               <MessageCircle className="h-5 w-5" aria-hidden="true" />
               Message us on WhatsApp
             </a>
-            {/* UPDATED PROJECTS BUTTON */}
             <Link to="/projects" className="btn btn-ghost-light gap-2">
               View our projects <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
@@ -138,6 +137,7 @@ function Home() {
         </div>
       </section>
 
+      {/* SERVICES SECTION */}
       <section className="section">
         <div className="shell">
           <div className="flex flex-wrap items-end justify-between gap-6">
@@ -155,7 +155,25 @@ function Home() {
         </div>
       </section>
 
+      {/* RECENT WORK SECTION (Moved up, added surface-muted background) */}
       <section className="section surface-muted">
+        <div className="shell">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <SectionHeader eyebrow="Recent work" title="Boreholes completed across Abeokuta" />
+            <Link to="/projects" className="btn btn-outline">View all projects</Link>
+          </div>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredProjects.slice(0, 6).map((project, i) => (
+              <Reveal key={project.slug} delay={(i % 3) * 80}>
+                <ProjectCard project={project} className="h-full" />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* WHY ACHIEVERS SECTION (Moved down, removed surface-muted to alternate colors) */}
+      <section className="section">
         <div className="shell grid items-center gap-12 lg:grid-cols-2">
           <Reveal className="overflow-hidden rounded-2xl">
             <img src={crewFieldwork} alt="Achievers field crew preparing a drilling site" loading="lazy" className="aspect-[4/5] w-full object-cover" />
@@ -175,22 +193,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="section">
-        <div className="shell">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <SectionHeader eyebrow="Recent work" title="Boreholes completed across Abeokuta" />
-            <Link to="/projects" className="btn btn-outline">View all projects</Link>
-          </div>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredProjects.slice(0, 6).map((project, i) => (
-              <Reveal key={project.slug} delay={(i % 3) * 80}>
-                <ProjectCard project={project} className="h-full" />
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      {/* WHO WE SERVE SECTION */}
       <section className="section surface-muted">
         <div className="shell">
           <SectionHeader eyebrow="Who we serve" title="Water for every kind of property" />
@@ -204,6 +207,7 @@ function Home() {
         </div>
       </section>
 
+      {/* FAQ SECTION */}
       <section className="section">
         <div className="shell grid gap-12 lg:grid-cols-[1fr_1.4fr]">
           <SectionHeader eyebrow="FAQ" title="Questions we are often asked" />
