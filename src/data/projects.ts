@@ -18,7 +18,7 @@ import kemtaImage from "@/assets/achievers-borehole-kemta.png";
 import kotopoImage from "@/assets/achievers-borehole-kotopo.png";
 import obadaImage from "@/assets/achievers-borehole-obada.png";
 import obantokoImage from "@/assets/achievers-borehole-obantoko.png";
-import pansakeImage from "@/assets/hero-drilling.jpg";
+import pansakeImage from "@/assets/achievers-borehole-panseke.jpg";
 
 export type Project = {
   slug: string;
