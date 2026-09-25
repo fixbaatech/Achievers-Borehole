@@ -43,9 +43,16 @@ function Home() {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,oklch(0.19_0.045_257/40%)_0%,oklch(0.19_0.045_257/95%)_85%)]" />
         <div className="shell relative">
           <p className="eyebrow eyebrow-light rise">Abeokuta · Ogun State</p>
-          <h1 className="display-1 rise mt-5 max-w-4xl text-on-dark">
-            Reliable Borehole & Water Solutions in Abeokuta and Ogun State
-          </h1>
+          <h1 className="text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
+  <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+    Reliable Borehole
+  </span>{" "}
+  &{" "}
+  <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+    Water Solutions
+  </span>{" "}
+  in Abeokuta and Ogun State
+</h1>
           <p className="lede rise mt-6 max-w-2xl text-on-dark-muted">
             Surveys, borehole drilling, casing, pumps and maintenance for homes, estates, farms,
             schools and industries across Ogun State.
