@@ -81,7 +81,7 @@ const stats = [
 function Home() {
   return (
     <>
-      {/* HERO SECTION */}
+      {/* 1. HERO SECTION (Dark) */}
       <section className="surface-dark relative flex min-h-[92vh] items-end overflow-hidden pt-32 pb-16 md:pb-24">
         <img
           src={heroDrilling}
@@ -137,7 +137,7 @@ function Home() {
         </div>
       </section>
 
-      {/* SERVICES SECTION */}
+      {/* 2. SERVICES SECTION (White) */}
       <section className="section">
         <div className="shell">
           <div className="flex flex-wrap items-end justify-between gap-6">
@@ -155,25 +155,38 @@ function Home() {
         </div>
       </section>
 
-      {/* RECENT WORK SECTION (Moved up, added surface-muted background) */}
-      <section className="section surface-muted">
+      {/* 3. RECENT WORK SECTION (Deep Navy Blue Background) */}
+      <section className="surface-dark py-16 md:py-24">
         <div className="shell">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <SectionHeader eyebrow="Recent work" title="Boreholes completed across Abeokuta" />
-            <Link to="/projects" className="btn btn-outline">View all projects</Link>
+          {/* Custom header explicitly styled for the dark background */}
+          <div className="flex flex-wrap items-end justify-between gap-6 border-b border-white/10 pb-8">
+            <div className="max-w-2xl">
+              <p className="eyebrow eyebrow-light text-[#5DF0D4]">Recent work</p>
+              <h2 className="mt-4 font-display text-3xl font-bold text-white sm:text-4xl">
+                Boreholes completed across Abeokuta
+              </h2>
+            </div>
+            <Link to="/projects" className="btn btn-ghost-light gap-2">
+              View all projects <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
           </div>
+          
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featuredProjects.slice(0, 6).map((project, i) => (
               <Reveal key={project.slug} delay={(i % 3) * 80}>
-                <ProjectCard project={project} className="h-full" />
+                {/* Adding bg-white here ensures the cards stand out perfectly on the navy background */}
+                <ProjectCard 
+                  project={project} 
+                  className="h-full bg-white rounded-2xl overflow-hidden shadow-xl" 
+                />
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* WHY ACHIEVERS SECTION (Moved down, removed surface-muted to alternate colors) */}
-      <section className="section">
+      {/* 4. WHY ACHIEVERS SECTION (Light Gray to keep alternating rhythm) */}
+      <section className="section surface-muted">
         <div className="shell grid items-center gap-12 lg:grid-cols-2">
           <Reveal className="overflow-hidden rounded-2xl">
             <img src={crewFieldwork} alt="Achievers field crew preparing a drilling site" loading="lazy" className="aspect-[4/5] w-full object-cover" />
@@ -193,8 +206,8 @@ function Home() {
         </div>
       </section>
 
-      {/* WHO WE SERVE SECTION */}
-      <section className="section surface-muted">
+      {/* 5. WHO WE SERVE SECTION (White) */}
+      <section className="section">
         <div className="shell">
           <SectionHeader eyebrow="Who we serve" title="Water for every kind of property" />
           <ul className="mt-10 flex flex-wrap gap-3">
@@ -207,8 +220,8 @@ function Home() {
         </div>
       </section>
 
-      {/* FAQ SECTION */}
-      <section className="section">
+      {/* 6. FAQ SECTION (Light Gray) */}
+      <section className="section surface-muted">
         <div className="shell grid gap-12 lg:grid-cols-[1fr_1.4fr]">
           <SectionHeader eyebrow="FAQ" title="Questions we are often asked" />
           <FaqList faqs={homeFaqs} />
