@@ -6,6 +6,10 @@ import irrigationFarm from "@/assets/irrigation-farm.jpg";
 import waterSurvey from "@/assets/water-survey.jpg";
 import ogereImage from "@/assets/achievers-Ogere.jpg";
 import filmVillageImage from "@/assets/achievers-Film Village.jpg";
+import soyoyeImage from "@/assets/achievers-soyoye.jpg";
+import funaabFarmImage from "@/assets/achievers-funaab-farm.jpg";
+import harmonyImage from "@/assets/achivers-harmony.jpg";
+import oloyedeImage from "@/assets/achievers-Oloyede.jpg";
 
 export type Project = {
   slug: string;
@@ -52,7 +56,7 @@ export const projects: Project[] = [
     location: "Soyoye, Abeokuta",
     service: "Borehole Drilling",
     depth: "100 m",
-    image: casingInstallation,
+    image: soyoyeImage,
     featured: true,
   },
   {
@@ -61,7 +65,7 @@ export const projects: Project[] = [
     location: "Oloyede/Olorunsogo, Abeokuta",
     service: "Borehole Drilling",
     depth: "120 m",
-    image: pumpInstallation,
+    image: oloyedeImage,
     featured: true,
   },
   {
@@ -92,7 +96,7 @@ export const projects: Project[] = [
     title: "Borehole Project — FUNAAB Farm, Abeokuta",
     location: "FUNAAB Farm, Abeokuta",
     service: "Borehole Drilling",
-    image: irrigationFarm,
+    image: funaabFarmImage,
     featured: true,
   },
   {
@@ -109,7 +113,7 @@ export const projects: Project[] = [
     location: "Harmony Estate Road, Alabata",
     service: "Borehole Drilling",
     depth: "120 m",
-    image: casingInstallation,
+    image: harmonyImage,
   },
   {
     slug: "cway-dairy-farm-ogere",
