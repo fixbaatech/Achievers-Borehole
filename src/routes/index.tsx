@@ -12,6 +12,52 @@ import { homeFaqs, whoWeServe, whyAchievers } from "@/data/content";
 import { siteConfig, whatsappLink } from "@/config/site";
 import { faqSchema, ldScript, pageMeta } from "@/lib/seo";
 
+import { useEffect, useState, useRef } from "react";
+
+export function AnimatedCounter({ value, suffix = "", duration = 2000 }: { value: number, suffix?: string, duration?: number }) {
+  const [count, setCount] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          if (ref.current) observer.unobserve(ref.current); // Stop observing once triggered
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+    
+    let startTime: number | null = null;
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      // Easing function for a smooth slow-down at the end
+      const easeProgress = 1 - Math.pow(1 - progress, 4); 
+      
+      setCount(Math.floor(easeProgress * value));
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setCount(value);
+      }
+    };
+    requestAnimationFrame(animate);
+  }, [value, duration, isVisible]);
+
+  return <span ref={ref}>{count}{suffix}</span>;
+}
+
 export const Route = createFileRoute("/")({
   head: () => ({
     ...pageMeta({
@@ -24,11 +70,12 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
+// Updated stats array to support the animation logic
 const stats = [
-  { value: "210 m", label: "Deepest documented borehole" },
-  { value: "15+", label: "Listed completed projects" },
-  { value: "9", label: "Water services, one team" },
-  { value: "Ogun", label: "State-wide coverage" },
+  { value: 100, suffix: "+", label: "Completed Projects", isAnimated: true },
+  { value: 210, suffix: "m", label: "Maximum Drill Depth", isAnimated: true },
+  { value: 9, suffix: "", label: "Specialized Services", isAnimated: true },
+  { value: "Ogun", suffix: "", label: "State-wide coverage", isAnimated: false },
 ];
 
 function Home() {
@@ -43,16 +90,16 @@ function Home() {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,oklch(0.19_0.045_257/40%)_0%,oklch(0.19_0.045_257/95%)_85%)]" />
         <div className="shell relative">
           <p className="eyebrow eyebrow-light rise">Abeokuta · Ogun State</p>
-         <h1 className="text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
-  <span className="bg-gradient-to-r from-[#5DF0D4] to-[#FFD84D] bg-clip-text text-transparent">
-    Reliable Borehole
-  </span>{" "}
-  &{" "}
-  <span className="bg-gradient-to-r from-[#5DF0D4] to-[#FFD84D] bg-clip-text text-transparent">
-    Water Solutions
-  </span>{" "}
-  in Abeokuta and Ogun State
-</h1>
+          <h1 className="text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
+            <span className="bg-gradient-to-r from-[#5DF0D4] to-[#FFD84D] bg-clip-text text-transparent">
+              Reliable Borehole
+            </span>{" "}
+            &{" "}
+            <span className="bg-gradient-to-r from-[#5DF0D4] to-[#FFD84D] bg-clip-text text-transparent">
+              Water Solutions
+            </span>{" "}
+            in Abeokuta and Ogun State
+          </h1>
           <p className="lede rise mt-6 max-w-2xl text-on-dark-muted">
             Surveys, borehole drilling, casing, pumps and maintenance for homes, estates, farms,
             schools and industries across Ogun State.
@@ -70,7 +117,13 @@ function Home() {
             {stats.map((stat) => (
               <div key={stat.label}>
                 <dt className="text-xs text-on-dark-muted">{stat.label}</dt>
-                <dd className="mt-1 font-display text-3xl font-semibold text-on-dark">{stat.value}</dd>
+                <dd className="mt-1 font-display text-3xl font-semibold text-on-dark">
+                  {stat.isAnimated ? (
+                    <AnimatedCounter value={stat.value as number} suffix={stat.suffix} />
+                  ) : (
+                    stat.value
+                  )}
+                </dd>
               </div>
             ))}
           </dl>
