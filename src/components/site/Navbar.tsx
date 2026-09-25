@@ -47,7 +47,7 @@ export function Navbar() {
           : "border-b border-transparent py-4",
       )}
     >
-      <div className="shell flex items-center justify-between gap-6">
+      <div className="shell flex items-center justify-between gap-8 px-4 lg:px-6">
         <Link to="/" aria-label="Achievers Geotechnical Services — home">
          <Logo light={!scrolled} />
         </Link>
@@ -58,8 +58,8 @@ export function Navbar() {
               key={link.to}
               to={link.to}
               activeOptions={{ exact: link.to === "/" }}
-              className="rounded-full px-3.5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-navy-deep"
-              activeProps={{ className: "text-navy-deep bg-secondary" }}
+              className="rounded-full px-4 py-2.5 text-sm font-medium text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+              activeProps={{ className: "text-[#022866] bg-white" }}
             >
               {link.label}
             </Link>
