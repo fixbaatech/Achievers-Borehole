@@ -44,7 +44,7 @@ function Home() {
         <div className="shell relative">
           <p className="eyebrow eyebrow-light rise">Abeokuta · Ogun State</p>
           <h1 className="display-1 rise mt-5 max-w-4xl text-on-dark">
-            Dependable water, drilled right the first time.
+            Reliable Borehole & Water Solutions in Abeokuta and Ogun State
           </h1>
           <p className="lede rise mt-6 max-w-2xl text-on-dark-muted">
             Surveys, borehole drilling, casing, pumps and maintenance for homes, estates, farms,
