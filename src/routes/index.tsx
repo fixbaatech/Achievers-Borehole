@@ -90,10 +90,12 @@ function Home() {
           to { transform: translateX(0); }
         }
         .animate-scroll-left {
-          animation: scrollLeft 35s linear infinite;
+          /* Increased from 35s to 80s for a smooth, readable speed */
+          animation: scrollLeft 80s linear infinite;
         }
         .animate-scroll-right {
-          animation: scrollRight 35s linear infinite;
+          /* Increased from 35s to 80s for a smooth, readable speed */
+          animation: scrollRight 80s linear infinite;
         }
         .hover-pause:hover .animate-scroll-left,
         .hover-pause:hover .animate-scroll-right {
