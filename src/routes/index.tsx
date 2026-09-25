@@ -105,11 +105,19 @@ function Home() {
             schools and industries across Ogun State.
           </p>
           <div className="rise mt-9 flex flex-wrap gap-3">
-            <Link to="/request-a-quote" className="btn btn-accent">
-              Request a Quote <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-            <Link to="/projects" className="btn btn-ghost-light">
-              View our projects
+            {/* UPDATED WHATSAPP BUTTON */}
+            <a 
+              href={whatsappLink} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="btn bg-[#25D366] hover:bg-[#20bd5a] text-white border-none gap-2"
+            >
+              <MessageCircle className="h-5 w-5" aria-hidden="true" />
+              Message us on WhatsApp
+            </a>
+            {/* UPDATED PROJECTS BUTTON */}
+            <Link to="/projects" className="btn btn-ghost-light gap-2">
+              View our projects <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>
 
