@@ -49,7 +49,7 @@ export function Navbar() {
     >
       <div className="shell flex items-center justify-between gap-6">
         <Link to="/" aria-label="Achievers Geotechnical Services — home">
-          <Logo />
+         <Logo light={!scrolled} />
         </Link>
 
         <nav aria-label="Main navigation" className="hidden items-center gap-1 lg:flex">
