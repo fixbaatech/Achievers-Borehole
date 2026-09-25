@@ -10,6 +10,15 @@ import soyoyeImage from "@/assets/achievers-soyoye.jpg";
 import funaabFarmImage from "@/assets/achievers-funaab-farm.jpg";
 import harmonyImage from "@/assets/achivers-harmony.jpg";
 import oloyedeImage from "@/assets/achievers-Oloyede.jpg";
+import cwayImage from "@/assets/achievers-borehole-cway.png";
+import egbaImage from "@/assets/achievers-borehole-egba.png";
+import ibaraImage from "@/assets/achievers-borehole-ibara.png";
+import idiAbaImage from "@/assets/achievers-borehole-idi-aba.png";
+import kemtaImage from "@/assets/achievers-borehole-kemta.png";
+import kotopoImage from "@/assets/achievers-borehole-kotopo.png";
+import obadaImage from "@/assets/achievers-borehole-obada.png";
+import obantokoImage from "@/assets/achievers-borehole-obantoko.png";
+import funaabFarmImage from "@/assets/achievers-funaab-farm.png";
 
 export type Project = {
   slug: string;
@@ -74,7 +83,7 @@ export const projects: Project[] = [
     location: "Kotopo, Abeokuta",
     service: "Borehole Drilling",
     depth: "140 m",
-    image: waterSurvey,
+    image: kotopoImage,
     featured: true,
   },
   {
@@ -82,14 +91,14 @@ export const projects: Project[] = [
     title: "Borehole Project — Obada, Abeokuta",
     location: "Obada, Abeokuta",
     service: "Borehole Drilling",
-    image: heroDrilling,
+    image: obadaImage,
   },
   {
     slug: "obantoko",
     title: "Borehole Project — Obantoko, Abeokuta",
     location: "Obantoko, Abeokuta",
     service: "Borehole Drilling",
-    image: crewFieldwork,
+    image: obantokoImage,
   },
   {
     slug: "funaab-farm",
@@ -105,7 +114,7 @@ export const projects: Project[] = [
     location: "Ibara Housing Estate, Abeokuta",
     service: "Borehole Drilling",
     depth: "95 m",
-    image: pumpInstallation,
+    image: ibaraImage,
   },
   {
     slug: "harmony-estate-alabata",
@@ -120,22 +129,22 @@ export const projects: Project[] = [
     title: "Borehole Project — Cway Dairy Farm, Ogere",
     location: "Cway Dairy Farm, Ogere",
     service: "Borehole Drilling",
-    image: irrigationFarm,
+    image: cwayImage,
   },
   {
     slug: "kemta-idi-aba",
     title: "Borehole Project — Kemta Idi Aba",
     location: "Kemta, Idi Aba, Abeokuta",
     service: "Borehole Drilling",
-    image: crewFieldwork,
+    image: kemtaImage,
   },
   {
     slug: "pansake",
-    title: "210-Metre Borehole — Pansake, Abeokuta",
-    location: "Pansake, Abeokuta",
+    title: "210-Metre Borehole — Panseke, Abeokuta",
+    location: "Panseke, Abeokuta",
     service: "Borehole Drilling",
     depth: "210 m",
-    image: heroDrilling,
+    image: pansakeImage,
     featured: true,
   },
   {
@@ -143,14 +152,14 @@ export const projects: Project[] = [
     title: "Egba Comprehensive High School, Asero",
     location: "Asero, Abeokuta",
     service: "Borehole Drilling",
-    image: waterSurvey,
+    image: egbaImage,
   },
   {
     slug: "abeokuta-grammar-school-idi-aba",
     title: "Abeokuta Grammar School, Idi Aba",
     location: "Idi Aba, Abeokuta",
     service: "Borehole Drilling",
-    image: casingInstallation,
+    image: idiAbaImage,
   },
 ];
 
