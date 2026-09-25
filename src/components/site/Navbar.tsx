@@ -44,8 +44,8 @@ export function Navbar() {
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-all duration-500",
           scrolled
-            ? "border-b border-border/80 bg-background/85 py-2 backdrop-blur-xl"
-            : "border-b border-transparent py-4",
+            ? "border-b border-border/80 bg-background/85 py-3 backdrop-blur-xl" // Increased to py-3
+            : "border-b border-transparent py-6", // Increased to py-6 for a larger, moderate padding
         )}
       >
         <div className="shell flex items-center justify-between gap-8 px-4 lg:px-6">
@@ -73,11 +73,17 @@ export function Navbar() {
           </nav>
 
           <div className="hidden items-center gap-2.5 lg:flex">
+            {/* Dynamic WhatsApp Button: White on dark background, Dark on white background */}
             <a
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-sm btn-outline"
+              className={cn(
+                "btn btn-sm gap-2 border transition-colors duration-300",
+                scrolled 
+                  ? "border-border text-navy-deep hover:bg-muted" 
+                  : "border-white/40 text-white hover:bg-white/10"
+              )}
             >
               <MessageCircle className="h-4 w-4" aria-hidden="true" />
               WhatsApp
@@ -104,9 +110,9 @@ export function Navbar() {
         </div>
       </header>
 
-      {/* Moved the mobile menu OUTSIDE the header tag so the backdrop-blur doesn't trap it! */}
+      {/* Moved top padding from 68px to 76px to accommodate the taller header */}
       {open && (
-        <div className="fixed inset-x-0 top-[68px] bottom-0 z-40 overflow-y-auto border-t border-border bg-background lg:hidden">
+        <div className="fixed inset-x-0 top-[76px] bottom-0 z-40 overflow-y-auto border-t border-border bg-background lg:hidden">
           <nav aria-label="Mobile navigation" className="shell flex flex-col py-4">
             {links.map((link) => (
               <Link
