@@ -43,12 +43,12 @@ function Home() {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,oklch(0.19_0.045_257/40%)_0%,oklch(0.19_0.045_257/95%)_85%)]" />
         <div className="shell relative">
           <p className="eyebrow eyebrow-light rise">Abeokuta · Ogun State</p>
-          <h1 className="text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
-  <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+         <h1 className="text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
+  <span className="bg-gradient-to-r from-[#5DF0D4] to-[#FFD84D] bg-clip-text text-transparent">
     Reliable Borehole
   </span>{" "}
   &{" "}
-  <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+  <span className="bg-gradient-to-r from-[#5DF0D4] to-[#FFD84D] bg-clip-text text-transparent">
     Water Solutions
   </span>{" "}
   in Abeokuta and Ogun State
