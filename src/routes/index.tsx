@@ -24,7 +24,7 @@ export function AnimatedCounter({ value, suffix = "", duration = 2000 }: { value
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          if (ref.current) observer.unobserve(ref.current); // Stop observing once triggered
+          if (ref.current) observer.unobserve(ref.current);
         }
       },
       { threshold: 0.1 }
@@ -41,7 +41,6 @@ export function AnimatedCounter({ value, suffix = "", duration = 2000 }: { value
     const animate = (currentTime: number) => {
       if (!startTime) startTime = currentTime;
       const progress = Math.min((currentTime - startTime) / duration, 1);
-      // Easing function for a smooth slow-down at the end
       const easeProgress = 1 - Math.pow(1 - progress, 4); 
       
       setCount(Math.floor(easeProgress * value));
@@ -70,7 +69,6 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-// Updated stats array to support the animation logic
 const stats = [
   { value: 100, suffix: "+", label: "Completed Projects", isAnimated: true },
   { value: 210, suffix: "m", label: "Maximum Drill Depth", isAnimated: true },
@@ -81,7 +79,29 @@ const stats = [
 function Home() {
   return (
     <>
-      {/* 1. HERO SECTION (Dark) */}
+      {/* INJECTED CSS FOR THE SMOOTH MARQUEE ANIMATION */}
+      <style>{`
+        @keyframes scrollLeft {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+        @keyframes scrollRight {
+          from { transform: translateX(-50%); }
+          to { transform: translateX(0); }
+        }
+        .animate-scroll-left {
+          animation: scrollLeft 35s linear infinite;
+        }
+        .animate-scroll-right {
+          animation: scrollRight 35s linear infinite;
+        }
+        .hover-pause:hover .animate-scroll-left,
+        .hover-pause:hover .animate-scroll-right {
+          animation-play-state: paused;
+        }
+      `}</style>
+
+      {/* 1. HERO SECTION */}
       <section className="surface-dark relative flex min-h-[92vh] items-end overflow-hidden pt-32 pb-16 md:pb-24">
         <img
           src={heroDrilling}
@@ -137,7 +157,7 @@ function Home() {
         </div>
       </section>
 
-      {/* 2. SERVICES SECTION (White) */}
+      {/* 2. SERVICES SECTION */}
       <section className="section">
         <div className="shell">
           <div className="flex flex-wrap items-end justify-between gap-6">
@@ -155,10 +175,9 @@ function Home() {
         </div>
       </section>
 
-      {/* 3. RECENT WORK SECTION (Deep Navy Blue Background) */}
+      {/* 3. RECENT WORK SECTION */}
       <section className="surface-dark py-16 md:py-24">
         <div className="shell">
-          {/* Custom header explicitly styled for the dark background */}
           <div className="flex flex-wrap items-end justify-between gap-6 border-b border-white/10 pb-8">
             <div className="max-w-2xl">
               <p className="eyebrow eyebrow-light text-[#5DF0D4]">Recent work</p>
@@ -174,7 +193,6 @@ function Home() {
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featuredProjects.slice(0, 6).map((project, i) => (
               <Reveal key={project.slug} delay={(i % 3) * 80}>
-                {/* Adding bg-white here ensures the cards stand out perfectly on the navy background */}
                 <ProjectCard 
                   project={project} 
                   className="h-full bg-white rounded-2xl overflow-hidden shadow-xl" 
@@ -185,7 +203,7 @@ function Home() {
         </div>
       </section>
 
-      {/* 4. WHY ACHIEVERS SECTION (Light Gray to keep alternating rhythm) */}
+      {/* 4. WHY ACHIEVERS SECTION */}
       <section className="section surface-muted">
         <div className="shell grid items-center gap-12 lg:grid-cols-2">
           <Reveal className="overflow-hidden rounded-2xl">
@@ -206,21 +224,42 @@ function Home() {
         </div>
       </section>
 
-      {/* 5. WHO WE SERVE SECTION (White) */}
-      <section className="section">
+      {/* 5. WHO WE SERVE SECTION (THE NEW ANIMATED PILLOWS) */}
+      <section className="section overflow-hidden bg-white">
         <div className="shell">
           <SectionHeader eyebrow="Who we serve" title="Water for every kind of property" />
-          <ul className="mt-10 flex flex-wrap gap-3">
-            {whoWeServe.map((item) => (
-              <li key={item.label} className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-navy-deep">
-                {item.label}
-              </li>
+        </div>
+        
+        {/* We use a wrapper with "hover-pause" so users can stop the animation to read */}
+        <div className="hover-pause mt-12 flex flex-col gap-6">
+          
+          {/* Row 1: Scrolling Left */}
+          <div className="flex w-max animate-scroll-left">
+            {/* Duplicating the array 4 times creates the infinite seamless loop */}
+            {[...whoWeServe, ...whoWeServe, ...whoWeServe, ...whoWeServe].map((item, i) => (
+              <div key={`left-${i}`} className="px-3">
+                <div className="whitespace-nowrap rounded-full bg-[#022866] px-8 py-3.5 text-sm font-semibold tracking-wide text-white shadow-[0_4px_14px_0_rgba(2,40,102,0.25)] transition-transform hover:scale-105 cursor-default">
+                  {item.label}
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
+
+          {/* Row 2: Scrolling Right (Reversing the array so it looks random) */}
+          <div className="flex w-max animate-scroll-right">
+            {[...whoWeServe.slice().reverse(), ...whoWeServe.slice().reverse(), ...whoWeServe.slice().reverse(), ...whoWeServe.slice().reverse()].map((item, i) => (
+              <div key={`right-${i}`} className="px-3">
+                <div className="whitespace-nowrap rounded-full bg-[#022866] px-8 py-3.5 text-sm font-semibold tracking-wide text-white shadow-[0_4px_14px_0_rgba(2,40,102,0.25)] transition-transform hover:scale-105 cursor-default">
+                  {item.label}
+                </div>
+              </div>
+            ))}
+          </div>
+          
         </div>
       </section>
 
-      {/* 6. FAQ SECTION (Light Gray) */}
+      {/* 6. FAQ SECTION */}
       <section className="section surface-muted">
         <div className="shell grid gap-12 lg:grid-cols-[1fr_1.4fr]">
           <SectionHeader eyebrow="FAQ" title="Questions we are often asked" />
