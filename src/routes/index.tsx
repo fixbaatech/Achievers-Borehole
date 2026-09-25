@@ -108,9 +108,9 @@ function Home() {
             <Link to="/request-a-quote" className="btn btn-accent">
               Request a Quote <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
-            <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="btn btn-ghost-light">
-              <MessageCircle className="h-4 w-4" aria-hidden="true" /> Chat on WhatsApp
-            </a>
+            <Link to="/projects" className="btn btn-ghost-light">
+              View our projects
+            </Link>
           </div>
 
           <dl className="mt-16 grid grid-cols-2 gap-6 border-t border-on-dark/15 pt-8 md:grid-cols-4">
