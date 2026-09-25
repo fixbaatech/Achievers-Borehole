@@ -4,6 +4,8 @@ import casingInstallation from "@/assets/casing-installation.jpg";
 import pumpInstallation from "@/assets/pump-installation.jpg";
 import irrigationFarm from "@/assets/irrigation-farm.jpg";
 import waterSurvey from "@/assets/water-survey.jpg";
+import ogereImage from "@/assets/achievers-Ogere.jpg";
+import filmVillageImage from "@/assets/achievers-Film Village.jpg";
 
 export type Project = {
   slug: string;
@@ -33,7 +35,7 @@ export const projects: Project[] = [
     location: "Film Village, Alabata, Abeokuta",
     service: "Borehole Drilling",
     depth: "150 m",
-    image: heroDrilling,
+    image: filmVillageImage,
     featured: true,
   },
   {
@@ -41,7 +43,7 @@ export const projects: Project[] = [
     title: "Borehole Drilled at Ogere, Abeokuta",
     location: "Ogere",
     service: "Borehole Drilling",
-    image: crewFieldwork,
+    image: ogereImage,
     featured: true,
   },
   {
