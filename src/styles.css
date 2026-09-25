@@ -74,12 +74,12 @@
 :root {
   --radius: 0.5rem;
 
-  --navy-deep: oklch(0.19 0.045 257);
-  --navy: oklch(0.27 0.062 258);
-  --navy-soft: oklch(0.38 0.055 257);
-  --teal: oklch(0.74 0.115 180);
-  --teal-deep: oklch(0.56 0.095 186);
-  --teal-soft: oklch(0.95 0.028 180);
+  --navy-deep: #022866;
+--navy: #022866;
+--navy-soft: #174886;
+  --teal: #ffaa2c;
+--teal-deep: #e89216;
+--teal-soft: #fff1d6;
   --sand: oklch(0.975 0.008 95);
   --on-dark: oklch(0.985 0.004 250);
   --on-dark-muted: oklch(0.82 0.018 250);
@@ -90,7 +90,7 @@
   --card-foreground: oklch(0.21 0.042 257);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.21 0.042 257);
-  --primary: oklch(0.27 0.062 258);
+  --primary: #022866;
   --primary-foreground: oklch(0.985 0.004 250);
   --secondary: oklch(0.968 0.008 250);
   --secondary-foreground: oklch(0.27 0.062 258);
