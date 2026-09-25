@@ -7,7 +7,14 @@ import { cn } from "@/lib/utils";
 export function Logo({ light = false, className }: { light?: boolean; className?: string }) {
   return (
     <span className={cn("flex items-center gap-2.5", className)}>
-      <svg
+
+<img
+  src="/images/logo.jpeg"
+  alt="Achievers Geotechnical Services"
+  className="h-9 w-auto shrink-0 object-contain"
+/>
+
+      {/* <svg
         viewBox="0 0 40 40"
         className="h-9 w-9 shrink-0"
         role="img"
@@ -20,7 +27,7 @@ export function Logo({ light = false, className }: { light?: boolean; className?
         />
         <path d="M20 26.7v6.1" className="stroke-accent" strokeWidth="2.4" strokeLinecap="round" />
         <path d="M14.6 31.4h10.8" className="stroke-accent" strokeWidth="2.4" strokeLinecap="round" />
-      </svg>
+      </svg> */}
       <span className="flex flex-col leading-none">
         <span
           className={cn(
