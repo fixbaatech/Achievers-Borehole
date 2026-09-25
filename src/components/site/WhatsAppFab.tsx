@@ -5,17 +5,9 @@ import { siteConfig, telLink, whatsappLink } from "@/config/site";
 
 export function WhatsAppFab() {
   const [showPopup, setShowPopup] = useState(false);
-  const [hasClosedPopup, setHasClosedPopup] = useState(false);
 
-  // Trigger the popup after exactly 5 seconds
+  // Trigger the popup after exactly 5 seconds (No memory check)
   useEffect(() => {
-    // Check if the user already closed it during this visit
-    const closedBefore = sessionStorage.getItem("achievers_popup_closed");
-    if (closedBefore) {
-      setHasClosedPopup(true);
-      return;
-    }
-
     const timer = setTimeout(() => {
       setShowPopup(true);
     }, 5000); // 5000 milliseconds = 5 seconds
@@ -25,14 +17,12 @@ export function WhatsAppFab() {
 
   const handleClosePopup = () => {
     setShowPopup(false);
-    setHasClosedPopup(true);
-    sessionStorage.setItem("achievers_popup_closed", "true");
   };
 
   return (
     <>
       {/* 1. THE 5-SECOND DELAY POPUP */}
-      {showPopup && !hasClosedPopup && (
+      {showPopup && (
         <div className="fixed bottom-24 left-4 right-4 z-40 animate-in slide-in-from-bottom-5 fade-in duration-500 md:bottom-6 md:left-6 md:right-auto md:w-[360px]">
           <div className="relative overflow-hidden rounded-2xl bg-white p-5 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.2)] ring-1 ring-border">
             <button
