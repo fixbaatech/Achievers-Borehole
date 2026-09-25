@@ -1,4 +1,4 @@
-import { MapPin, Ruler } from "lucide-react";
+import { MapPin, Ruler, ExternalLink } from "lucide-react";
 import type { Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
 
@@ -33,6 +33,20 @@ export function ProjectCard({ project, className }: { project: Project; classNam
             </span>
           )}
         </div>
+        
+        {/* NEW: YouTube Link exactly matching your style */}
+        {project.youtubeUrl && (
+          <div className="mt-auto pt-5">
+            <a 
+              href={project.youtubeUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#F59E0B] hover:text-[#D97706] transition-colors"
+            >
+              Open on YouTube <ExternalLink className="h-4 w-4" />
+            </a>
+          </div>
+        )}
       </div>
     </article>
   );

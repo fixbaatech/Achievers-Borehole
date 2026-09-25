@@ -49,6 +49,7 @@ export const projects: Project[] = [
     service: "Borehole Drilling",
     depth: "150 m",
     image: filmVillageImage,
+    youtubeUrl: "https://www.youtube.com/watch?v=zKWSFoMkAVA",
     featured: true,
   },
   {
@@ -57,6 +58,7 @@ export const projects: Project[] = [
     location: "Ogere",
     service: "Borehole Drilling",
     image: ogereImage,
+    youtubeUrl: "https://www.youtube.com/watch?v=5yuVggrF0u0&t=36s",
     featured: true,
   },
   {
@@ -66,6 +68,7 @@ export const projects: Project[] = [
     service: "Borehole Drilling",
     depth: "100 m",
     image: soyoyeImage,
+    youtubeUrl: "https://www.youtube.com/watch?v=w5MpYK8v83k",
     featured: true,
   },
   {
@@ -75,6 +78,7 @@ export const projects: Project[] = [
     service: "Borehole Drilling",
     depth: "120 m",
     image: oloyedeImage,
+    youtubeUrl: "https://www.youtube.com/watch?v=Pp2cYeJzXIs",
     featured: true,
   },
   {
@@ -84,6 +88,7 @@ export const projects: Project[] = [
     service: "Borehole Drilling",
     depth: "140 m",
     image: kotopoImage,
+    youtubeUrl: "https://www.youtube.com/watch?v=zD5IFZsFj8U",
     featured: true,
   },
   {
@@ -92,6 +97,7 @@ export const projects: Project[] = [
     location: "Obada, Abeokuta",
     service: "Borehole Drilling",
     image: obadaImage,
+    youtubeUrl: "https://www.youtube.com/watch?v=fXUegdEy2RM&t=97s",
   },
   {
     slug: "obantoko",
@@ -99,6 +105,7 @@ export const projects: Project[] = [
     location: "Obantoko, Abeokuta",
     service: "Borehole Drilling",
     image: obantokoImage,
+    youtubeUrl: "https://www.youtube.com/watch?v=Sco6TWePbS0&t=138s",
   },
   {
     slug: "funaab-farm",
@@ -106,6 +113,7 @@ export const projects: Project[] = [
     location: "FUNAAB Farm, Abeokuta",
     service: "Borehole Drilling",
     image: funaabFarmImage,
+    youtubeUrl: "https://www.youtube.com/watch?v=hiqBs9YUfGA",
     featured: true,
   },
   {
@@ -115,6 +123,7 @@ export const projects: Project[] = [
     service: "Borehole Drilling",
     depth: "95 m",
     image: ibaraImage,
+    youtubeUrl: "https://www.youtube.com/watch?v=uBcUE368LLc&t=292s",
   },
   {
     slug: "harmony-estate-alabata",
@@ -123,6 +132,7 @@ export const projects: Project[] = [
     service: "Borehole Drilling",
     depth: "120 m",
     image: harmonyImage,
+    youtubeUrl: "https://www.youtube.com/watch?v=zo-xAVl_UeA&t=101s",
   },
   {
     slug: "cway-dairy-farm-ogere",
@@ -130,6 +140,7 @@ export const projects: Project[] = [
     location: "Cway Dairy Farm, Ogere",
     service: "Borehole Drilling",
     image: cwayImage,
+    youtubeUrl: "https://www.youtube.com/watch?v=2TaBGHZ-48A",
   },
   {
     slug: "kemta-idi-aba",
@@ -137,6 +148,7 @@ export const projects: Project[] = [
     location: "Kemta, Idi Aba, Abeokuta",
     service: "Borehole Drilling",
     image: kemtaImage,
+    youtubeUrl: "https://www.youtube.com/watch?v=39ATA2bTnmY",
   },
   {
     slug: "panseke",
@@ -145,6 +157,7 @@ export const projects: Project[] = [
     service: "Borehole Drilling",
     depth: "210 m",
     image: pansakeImage,
+    youtubeUrl: "https://www.youtube.com/watch?v=UE3Zrql-45E&pp=0gcJCS8MAYcqIYzv",
     featured: true,
   },
   {
@@ -153,6 +166,7 @@ export const projects: Project[] = [
     location: "Asero, Abeokuta",
     service: "Borehole Drilling",
     image: egbaImage,
+    youtubeUrl: "https://www.youtube.com/watch?v=ZzLrSj3QXUQ",
   },
   {
     slug: "abeokuta-grammar-school-idi-aba",
@@ -160,6 +174,7 @@ export const projects: Project[] = [
     location: "Idi Aba, Abeokuta",
     service: "Borehole Drilling",
     image: idiAbaImage,
+    youtubeUrl: "https://www.youtube.com/watch?v=LGTSfiFVdNc",
   },
 ];
 
