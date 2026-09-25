@@ -39,69 +39,72 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        scrolled
-          ? "border-b border-border/80 bg-background/85 py-2 backdrop-blur-xl"
-          : "border-b border-transparent py-4",
-      )}
-    >
-      <div className="shell flex items-center justify-between gap-8 px-4 lg:px-6">
-        <Link to="/" aria-label="Achievers Geotechnical Services — home">
-          <Logo light={!scrolled} />
-        </Link>
-
-        <nav aria-label="Main navigation" className="hidden items-center gap-1 lg:flex">
-          {links.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              activeOptions={{ exact: link.to === "/" }}
-              className={cn(
-                "rounded-full px-4 py-2.5 text-sm font-medium transition-colors",
-                scrolled 
-                  ? "text-navy-deep hover:bg-black/5" 
-                  : "text-white/80 hover:bg-white/10 hover:text-white"
-              )}
-              activeProps={{ className: "!text-[#022866] bg-white shadow-sm" }}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="hidden items-center gap-2.5 lg:flex">
-          <a
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-sm btn-outline"
-          >
-            <MessageCircle className="h-4 w-4" aria-hidden="true" />
-            WhatsApp
-          </a>
-          <Link to="/request-a-quote" className="btn btn-sm btn-accent">
-            Request a Quote
+    <>
+      <header
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 transition-all duration-500",
+          scrolled
+            ? "border-b border-border/80 bg-background/85 py-2 backdrop-blur-xl"
+            : "border-b border-transparent py-4",
+        )}
+      >
+        <div className="shell flex items-center justify-between gap-8 px-4 lg:px-6">
+          <Link to="/" aria-label="Achievers Geotechnical Services — home">
+            <Logo light={!scrolled} />
           </Link>
+
+          <nav aria-label="Main navigation" className="hidden items-center gap-1 lg:flex">
+            {links.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                activeOptions={{ exact: link.to === "/" }}
+                className={cn(
+                  "rounded-full px-4 py-2.5 text-sm font-medium transition-colors",
+                  scrolled 
+                    ? "text-navy-deep hover:bg-black/5" 
+                    : "text-white/80 hover:bg-white/10 hover:text-white"
+                )}
+                activeProps={{ className: "!text-[#022866] bg-white shadow-sm" }}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="hidden items-center gap-2.5 lg:flex">
+            <a
+              href={whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-sm btn-outline"
+            >
+              <MessageCircle className="h-4 w-4" aria-hidden="true" />
+              WhatsApp
+            </a>
+            <Link to="/request-a-quote" className="btn btn-sm btn-accent">
+              Request a Quote
+            </Link>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setOpen((value) => !value)}
+            className={cn(
+              "inline-flex h-11 w-11 items-center justify-center rounded-full border lg:hidden transition-colors duration-300",
+              scrolled 
+                ? "border-border text-navy-deep" 
+                : "border-white/30 text-white"
+            )}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
+      </header>
 
-        <button
-          type="button"
-          onClick={() => setOpen((value) => !value)}
-          className={cn(
-            "inline-flex h-11 w-11 items-center justify-center rounded-full border lg:hidden transition-colors duration-300",
-            scrolled 
-              ? "border-border text-navy-deep" 
-              : "border-white/30 text-white"
-          )}
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
-      </div>
-
+      {/* Moved the mobile menu OUTSIDE the header tag so the backdrop-blur doesn't trap it! */}
       {open && (
         <div className="fixed inset-x-0 top-[68px] bottom-0 z-40 overflow-y-auto border-t border-border bg-background lg:hidden">
           <nav aria-label="Mobile navigation" className="shell flex flex-col py-4">
@@ -147,6 +150,6 @@ export function Navbar() {
           </nav>
         </div>
       )}
-    </header>
+    </>
   );
 }
