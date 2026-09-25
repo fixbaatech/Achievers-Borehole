@@ -1,9 +1,4 @@
-import heroDrilling from "@/assets/hero-drilling.jpg";
-import crewFieldwork from "@/assets/crew-fieldwork.jpg";
-import casingInstallation from "@/assets/casing-installation.jpg";
-import pumpInstallation from "@/assets/pump-installation.jpg";
-import irrigationFarm from "@/assets/irrigation-farm.jpg";
-import waterSurvey from "@/assets/water-survey.jpg";
+// Only importing images that are actually used in the array below
 import ogereImage from "@/assets/achievers-Ogere.jpg";
 import filmVillageImage from "@/assets/achievers-Film Village.jpg";
 import soyoyeImage from "@/assets/achievers-soyoye.jpg";
@@ -18,7 +13,9 @@ import kemtaImage from "@/assets/achievers-borehole-kemta.png";
 import kotopoImage from "@/assets/achievers-borehole-kotopo.png";
 import obadaImage from "@/assets/achievers-borehole-obada.png";
 import obantokoImage from "@/assets/achievers-borehole-obantoko.png";
-import pansakeImage from "@/assets/achievers-borehole-panseke.jpg";
+
+// Fallback to prevent crashes until the real image is added
+import pansakeImage from "@/assets/hero-drilling.jpg"; 
 
 export type Project = {
   slug: string;
