@@ -122,7 +122,7 @@ export function QuoteForm({ defaultService }: { defaultService?: string }) {
             name="location"
             required
             className={fieldClass}
-            placeholder="Town / area in Ogun State"
+            placeholder="Town / area in Nigeria"
           />
         </div>
 
@@ -159,15 +159,16 @@ export function QuoteForm({ defaultService }: { defaultService?: string }) {
         </div>
 
         <div className="md:col-span-2">
+          {/* CLIENT CORRECTION #6: Updated question text */}
           <label className={labelClass} htmlFor="details">
-            Project Details
+            Has the geological survey been done?
           </label>
           <textarea
             id="details"
             name="details"
-            rows={5}
+            rows={4}
             className={fieldClass}
-            placeholder="Tell us about the site, what the water is for, and anything already installed."
+            placeholder="Please let us know if a survey has been completed, or provide any other details about your site..."
           />
         </div>
       </div>
@@ -186,14 +187,8 @@ export function QuoteForm({ defaultService }: { defaultService?: string }) {
           Or chat on WhatsApp
         </a>
       </div>
-
-      {!configured && (
-        <p className="mt-5 rounded-md border border-dashed border-accent/60 bg-accent/10 p-4 text-sm text-navy-deep">
-          <strong>Setup note:</strong> add your Web3Forms access key in{" "}
-          <code>src/config/site.ts</code> so submissions are delivered to{" "}
-          {siteConfig.contact.email}.
-        </p>
-      )}
+      
+      {/* CLIENT CORRECTION #5: The setup note that used to be here has been completely removed. */}
     </form>
   );
 }
