@@ -18,11 +18,107 @@ export type BlogPost = {
 };
 
 export const blogPosts: BlogPost[] = [
+  // --- THE 3 NEW SEO-OPTIMIZED POSTS ---
+  {
+    slug: "best-borehole-drilling-company-abeokuta",
+    title: "How to Identify the Best Borehole Drilling Company in Abeokuta",
+    category: "Guide",
+    date: "September 26, 2026",
+    readTime: "4 min read",
+    image: heroDrilling,
+    excerpt: "Searching for the best borehole drilling company in Abeokuta? Learn what separates professional drillers from the rest and how to ensure you get a lasting water supply.",
+    sections: [
+      {
+        paragraphs: [
+          "If you are searching Google for the 'best borehole drilling company in Abeokuta' or 'top borehole drillers in Ogun State,' you already know that drilling a well is a major investment. The rocky terrain of Abeokuta (which literally translates to 'Under the rock') makes hiring the right company absolutely critical."
+        ]
+      },
+      {
+        heading: "Why the 'Best' Drillers Never Skip the Survey",
+        paragraphs: [
+          "The most reliable companies will never give you a blind quote or guess where the water is. The best borehole drilling company will always start with a comprehensive Geophysical Water Survey to map the underground aquifers and rocky layers. This scientific approach guarantees that they drill in the exact right spot."
+        ]
+      },
+      {
+        heading: "AWDROP Registration is Non-Negotiable",
+        paragraphs: [
+          "Always verify that your driller is a registered member of the Association of Water Well Drilling Practitioners of Nigeria (AWDROP). Achievers Geotechnical Services Ltd is fully registered, meaning we adhere to the strictest engineering and safety standards in the country. Unregistered 'roadside' drillers often use substandard casing pipes that collapse within a year."
+        ]
+      },
+      {
+        heading: "The Right Equipment for the Right Soil",
+        paragraphs: [
+          "Because Ogun State has diverse geological formations—from the hard granite of Abeokuta to the sedimentary soils of other towns—a top-tier company must have access to both Rotary and Odex drilling rigs. Ask your contractor what method they plan to use for your specific location!"
+        ]
+      }
+    ]
+  },
+  {
+    slug: "how-deep-should-borehole-be-nigeria",
+    title: "How Deep Should a Borehole Be in Nigeria? (Abeokuta & Ogun State Guide)",
+    category: "Education",
+    date: "September 24, 2026",
+    readTime: "4 min read",
+    image: waterSurvey,
+    excerpt: "One of the most frequently asked questions on Google is: how deep should a borehole be? Discover the factors that determine drilling depth in Nigerian soil.",
+    sections: [
+      {
+        paragraphs: [
+          "A question we get almost every day is, 'How deep do you need to drill to get good water?' The truth is, there is no one-size-fits-all answer. The ideal depth of a borehole in Nigeria depends entirely on your local geology and the results of your water survey."
+        ]
+      },
+      {
+        heading: "Surface Water vs. Deep Aquifers",
+        paragraphs: [
+          "In some areas, you might hit water at just 30 meters. However, this is often 'surface water' or a shallow aquifer. Shallow water is highly susceptible to drying up during the dry season (harmattan) and is easily contaminated by nearby soakaways and surface runoff.",
+          "To guarantee a pure, uninterrupted water supply year-round, professional drillers aim for deeper, confined aquifers. In places like Abeokuta, this often means drilling between 80 to 150 meters down through solid rock to tap into pristine water veins."
+        ]
+      },
+      {
+        heading: "Let the Science Decide",
+        paragraphs: [
+          "Never let a driller guess the depth. A proper geophysical resistivity survey will tell you exactly how deep the water-bearing rock fractures are located on your specific property before the rig even arrives."
+        ]
+      }
+    ]
+  },
+  {
+    slug: "borehole-pumping-sand-treatment",
+    title: "Is Your Borehole Pumping Sand or Brown Water? Here is the Solution",
+    category: "Maintenance",
+    date: "September 22, 2026",
+    readTime: "5 min read",
+    image: pumpInstallation,
+    excerpt: "If your borehole water is sandy, brown, or smells of iron, do not panic. Learn the common causes of borehole contamination and how to fix them.",
+    sections: [
+      {
+        paragraphs: [
+          "Nothing is more frustrating than turning on your tap and seeing muddy, sandy, or rust-colored water pouring out. This is a highly searched problem across Nigeria, and it usually points to a structural failure in the borehole itself."
+        ]
+      },
+      {
+        heading: "Why is my borehole pumping sand?",
+        paragraphs: [
+          "If you are seeing sand, it means the filter screens or the casing at the bottom of your well have failed. When inexperienced drillers use cheap, thin PVC pipes instead of high-pressure casing, the earth crushes the pipe. Another common reason is a lack of 'gravel packing'—a crucial step where special stones are poured around the casing to filter out sand.",
+          "Solution: Stop pumping immediately to prevent the sand from destroying your submersible pump's motor. Call Achievers Geotechnical Services to inspect the well. We can often perform a 'borehole flush' or install a new inner casing to save the well."
+        ]
+      },
+      {
+        heading: "Why does my water look brown or smell like metal?",
+        paragraphs: [
+          "Brown or orange water that smells like metal is usually caused by high iron content in the natural rock formation. It can also be caused by using cheap steel drop-pipes that have rusted underground.",
+          "Solution: If the source is natural iron in the aquifer, we can install a professional water treatment and filtration cylinder between your borehole and your overhead tank to strip the iron and odor out completely."
+        ]
+      }
+    ]
+  },
+
+  // --- THE ORIGINAL 6 POSTS ---
   {
     slug: "cost-of-drilling-borehole-nigeria",
     title: "The Cost of Drilling a Borehole in Abeokuta and Selected Cities in Nigeria",
     category: "Cost & Planning",
-    date: "September 24, 2026",
+    date: "September 19, 2026",
     readTime: "4 min read",
     image: heroDrilling,
     excerpt: "Understanding the true cost of borehole drilling in Nigeria. Why prices vary between Abeokuta, Lagos, and Ibadan, and what factors influence your final quote.",
@@ -62,7 +158,7 @@ export const blogPosts: BlogPost[] = [
     slug: "why-boreholes-fail",
     title: "Why Boreholes Fail and the Remedy",
     category: "Maintenance",
-    date: "September 18, 2026",
+    date: "September 15, 2026",
     readTime: "5 min read",
     image: crewFieldwork,
     excerpt: "Is your borehole pumping sand, yielding less water, or completely dry? Learn the top reasons why boreholes fail and how Achievers can fix them.",
