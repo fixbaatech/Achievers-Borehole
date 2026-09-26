@@ -14,7 +14,7 @@ import kotopoImage from "@/assets/achievers-borehole-kotopo.png";
 import obadaImage from "@/assets/achievers-borehole-obada.png";
 import obantokoImage from "@/assets/achievers-borehole-obantoko.png";
 import schoolBoreholeDrilling from "@/assets/school-borehole.png";
-import waterGushing from "@/assets/schoolBoreholeDrilling";
+import waterGushing from "@/assets/water-gushing.png;
 
 export type Project = {
   slug: string;
