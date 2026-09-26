@@ -158,17 +158,32 @@ export function QuoteForm({ defaultService }: { defaultService?: string }) {
           </select>
         </div>
 
+        {/* The new Yes/No dropdown for the Geological Survey */}
         <div className="md:col-span-2">
-          {/* CLIENT CORRECTION #6: Updated question text */}
-          <label className={labelClass} htmlFor="details">
+          <label className={labelClass} htmlFor="survey">
             Has the geological survey been done?
+          </label>
+          <select id="survey" name="geological_survey_done" required defaultValue="" className={fieldClass}>
+            <option value="" disabled>
+              Select Yes or No
+            </option>
+            <option value="Yes">Yes, the survey is done</option>
+            <option value="No">No, it hasn't been done yet</option>
+            <option value="Not sure">I'm not sure</option>
+          </select>
+        </div>
+
+        {/* Optional text area for extra details */}
+        <div className="md:col-span-2">
+          <label className={labelClass} htmlFor="details">
+            Additional Details (Optional)
           </label>
           <textarea
             id="details"
             name="details"
-            rows={4}
+            rows={3}
             className={fieldClass}
-            placeholder="Please let us know if a survey has been completed, or provide any other details about your site..."
+            placeholder="Provide any other details about your site or project..."
           />
         </div>
       </div>
@@ -187,8 +202,6 @@ export function QuoteForm({ defaultService }: { defaultService?: string }) {
           Or chat on WhatsApp
         </a>
       </div>
-      
-      {/* CLIENT CORRECTION #5: The setup note that used to be here has been completely removed. */}
     </form>
   );
 }
