@@ -243,40 +243,6 @@ export const services: Service[] = [
     ],
   },
   {
-    slug: "borehole-extension",
-    name: "Borehole Extension",
-    category: "Maintenance & Upgrades",
-    icon: "arrowDown",
-    short:
-      "Deepening an existing borehole to reach a stronger water-bearing zone and restore reliable supply.",
-    image: heroDrilling,
-    imageAlt: "Drilling rig extending an existing borehole",
-    intro: [
-      "Where a borehole was drilled too shallow, or the water level has dropped, extending the existing hole can be more practical than starting again.",
-      "We assess whether the current borehole is structurally sound enough to deepen, then extend it to reach a more productive zone.",
-      "Extension is followed by re-casing where required, development and testing so the well returns to dependable service.",
-    ],
-    who: [
-      "Boreholes that run dry during the dry season",
-      "Shallow wells with insufficient yield for current demand",
-      "Properties that have increased water demand since drilling",
-      "Farms and industries needing higher abstraction",
-    ],
-    process: [
-      { title: "Condition assessment", detail: "We confirm the existing hole can be safely deepened." },
-      { title: "Extension drilling", detail: "The borehole is advanced towards a stronger zone." },
-      { title: "Casing adjustment", detail: "Additional casing and screening are set as required." },
-      { title: "Development and testing", detail: "The well is flushed, developed and tested for improved yield." },
-    ],
-    faqs: [
-      {
-        question: "Can every borehole be extended?",
-        answer:
-          "Not always. If the existing hole has collapsed or was poorly cased, a new borehole may be the sounder option. We assess the well first and advise accordingly.",
-      },
-    ],
-  },
-  {
     slug: "tank-installation",
     name: "Tank Installation",
     category: "Water Systems",
@@ -363,7 +329,6 @@ export const quoteServiceOptions = [
   "Pump Recovery",
   "Casing Installation",
   "Borehole Maintenance",
-  "Borehole Extension",
   "Tank Installation",
   "Irrigation System",
   "Other",
