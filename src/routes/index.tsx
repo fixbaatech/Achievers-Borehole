@@ -60,7 +60,7 @@ export function AnimatedCounter({ value, suffix = "", duration = 2000 }: { value
 export const Route = createFileRoute("/")({
   head: () => ({
     ...pageMeta({
-      title: "Borehole Drilling in Abeokuta & Ogun State | Achievers Geotechnical",
+      title: "Borehole Drilling in Nigeria | Achievers Geotechnical",
       description: siteConfig.description,
       path: "/",
     }),
@@ -70,10 +70,10 @@ export const Route = createFileRoute("/")({
 });
 
 const stats = [
-  { value: 100, suffix: "+", label: "Completed Projects", isAnimated: true },
-  { value: 210, suffix: "m", label: "Maximum Drill Depth", isAnimated: true },
+  { value: 300, suffix: "+", label: "Completed Projects", isAnimated: true },
+  { value: 300, suffix: "m+", label: "Maximum Drill Depth", isAnimated: true },
   { value: 9, suffix: "", label: "Specialized Services", isAnimated: true },
-  { value: "Ogun", suffix: "", label: "State-wide coverage", isAnimated: false },
+  { value: "Countrywide", suffix: "", label: "Coverage", isAnimated: false },
 ];
 
 function Home() {
@@ -107,12 +107,25 @@ function Home() {
       <section className="surface-dark relative flex min-h-[92vh] items-end overflow-hidden pt-32 pb-16 md:pb-24">
         <img
           src={heroDrilling}
-          alt="Achievers drilling rig at work on a borehole site in Abeokuta"
+          alt="Achievers drilling rig at work on a borehole site in Nigeria"
           className="absolute inset-0 h-full w-full object-cover opacity-45"
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,oklch(0.19_0.045_257/40%)_0%,oklch(0.19_0.045_257/95%)_85%)]" />
         <div className="shell relative">
-          <p className="eyebrow eyebrow-light rise">Abeokuta · Ogun State</p>
+          
+          {/* AWDROP BADGE */}
+          <div className="rise mb-5 flex flex-wrap items-center gap-3">
+            <p className="eyebrow eyebrow-light !mb-0">Nigeria</p>
+            <a 
+              href="https://awdrop.org/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[0.65rem] font-semibold tracking-wider text-white backdrop-blur-sm transition-colors hover:bg-white/20 uppercase"
+            >
+              Registered Member of AWDROP
+            </a>
+          </div>
+
           <h1 className="text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
             <span className="bg-gradient-to-r from-[#5DF0D4] to-[#FFD84D] bg-clip-text text-transparent">
               Reliable Borehole
@@ -121,11 +134,11 @@ function Home() {
             <span className="bg-gradient-to-r from-[#5DF0D4] to-[#FFD84D] bg-clip-text text-transparent">
               Water Solutions
             </span>{" "}
-            in Abeokuta and Ogun State
+            in Nigeria
           </h1>
           <p className="lede rise mt-6 max-w-2xl text-on-dark-muted">
             Surveys, borehole drilling, casing, pumps and maintenance for homes, estates, farms,
-            schools and industries across Ogun State.
+            schools and industries across Nigeria.
           </p>
           <div className="rise mt-9 flex flex-wrap gap-3">
             <a 
@@ -184,7 +197,7 @@ function Home() {
             <div className="max-w-2xl">
               <p className="eyebrow eyebrow-light text-[#5DF0D4]">Recent work</p>
               <h2 className="mt-4 font-display text-3xl font-bold text-white sm:text-4xl">
-                Boreholes completed across Abeokuta
+                Boreholes completed across Nigeria
               </h2>
             </div>
             <Link to="/projects" className="btn btn-ghost-light gap-2">
