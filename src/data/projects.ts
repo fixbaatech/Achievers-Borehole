@@ -13,9 +13,7 @@ import kemtaImage from "@/assets/achievers-borehole-kemta.png";
 import kotopoImage from "@/assets/achievers-borehole-kotopo.png";
 import obadaImage from "@/assets/achievers-borehole-obada.png";
 import obantokoImage from "@/assets/achievers-borehole-obantoko.png";
-
-// Fallback to prevent crashes until the real image is added
-import pansakeImage from "@/assets/hero-drilling.jpg"; 
+import heroDrilling from "@/assets/hero-drilling.jpg";
 
 export type Project = {
   slug: string;
@@ -33,19 +31,13 @@ export type Project = {
   featured?: boolean;
 };
 
-/**
- * Project list as supplied by Achievers. Depth and date are left blank where
- * they were not provided — nothing here is invented.
- * To add a real photo: drop it in src/assets and swap the `image` value.
- */
 export const projects: Project[] = [
-  // CLIENT CORRECTION #3: Reordered projects #1, #2, and #3 with new titles/videos
   {
     slug: "step-by-step-abeokuta",
     title: "Step by step 5 hrs borehole drilled in Abeokuta in 21 minutes",
     location: "Abeokuta, Ogun State",
     service: "Borehole Drilling",
-    image: heroDrilling, // Placeholder, swap with a real image later
+    image: heroDrilling,
     youtubeUrl: "https://youtu.be/KNFW6G4ROw0",
     featured: true,
   },
@@ -64,12 +56,10 @@ export const projects: Project[] = [
     title: "We drilled borehole where others failed",
     location: "Abeokuta, Ogun State",
     service: "Borehole Drilling",
-    image: heroDrilling, // Placeholder, swap with a real image later
+    image: heroDrilling,
     youtubeUrl: "https://youtu.be/en-lNGF_HAU",
     featured: true,
   },
-
-  // THE REST OF THE PROJECTS
   {
     slug: "film-village-alabata",
     title: "150-Metre Borehole — Film Village, Alabata, Abeokuta",
@@ -174,7 +164,7 @@ export const projects: Project[] = [
     location: "Panseke, Abeokuta",
     service: "Borehole Drilling",
     depth: "210 m",
-    image: pansakeImage,
+    image: heroDrilling,
     youtubeUrl: "https://www.youtube.com/watch?v=UE3Zrql-45E&pp=0gcJCS8MAYcqIYzv",
     featured: true,
   },
