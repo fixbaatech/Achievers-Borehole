@@ -17,6 +17,8 @@ import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as RequestAQuoteRouteImport } from './routes/request-a-quote'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as VideosRouteImport } from './routes/videos'
+import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 
@@ -61,6 +63,16 @@ const VideosRoute = VideosRouteImport.update({
   path: '/videos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesSlugRoute = ResourcesSlugRouteImport.update({
+  id: '/resources/$slug',
+  path: '/resources/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesIndexRoute = ServicesIndexRouteImport.update({
   id: '/services/',
   path: '/services/',
@@ -81,6 +93,8 @@ export interface FileRoutesByFullPath {
   '/request-a-quote': typeof RequestAQuoteRoute
   '/testimonials': typeof TestimonialsRoute
   '/videos': typeof VideosRoute
+  '/resources': typeof ResourcesRoute
+  '/resources/$slug': typeof ResourcesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/': typeof ServicesIndexRoute
 }
@@ -93,6 +107,8 @@ export interface FileRoutesByTo {
   '/request-a-quote': typeof RequestAQuoteRoute
   '/testimonials': typeof TestimonialsRoute
   '/videos': typeof VideosRoute
+  '/resources': typeof ResourcesRoute
+  '/resources/$slug': typeof ResourcesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services': typeof ServicesIndexRoute
 }
@@ -106,6 +122,8 @@ export interface FileRoutesById {
   '/request-a-quote': typeof RequestAQuoteRoute
   '/testimonials': typeof TestimonialsRoute
   '/videos': typeof VideosRoute
+  '/resources': typeof ResourcesRoute
+  '/resources/$slug': typeof ResourcesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/': typeof ServicesIndexRoute
 }
@@ -120,6 +138,8 @@ export interface FileRouteTypes {
     | '/request-a-quote'
     | '/testimonials'
     | '/videos'
+    | '/resources'
+    | '/resources/$slug'
     | '/services/$slug'
     | '/services/'
   fileRoutesByTo: FileRoutesByTo
@@ -132,6 +152,8 @@ export interface FileRouteTypes {
     | '/request-a-quote'
     | '/testimonials'
     | '/videos'
+    | '/resources'
+    | '/resources/$slug'
     | '/services/$slug'
     | '/services'
   id:
@@ -144,6 +166,8 @@ export interface FileRouteTypes {
     | '/request-a-quote'
     | '/testimonials'
     | '/videos'
+    | '/resources'
+    | '/resources/$slug'
     | '/services/$slug'
     | '/services/'
   fileRoutesById: FileRoutesById
@@ -157,6 +181,8 @@ export interface RootRouteChildren {
   RequestAQuoteRoute: typeof RequestAQuoteRoute
   TestimonialsRoute: typeof TestimonialsRoute
   VideosRoute: typeof VideosRoute
+  ResourcesRoute: typeof ResourcesRoute
+  ResourcesSlugRoute: typeof ResourcesSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
 }
@@ -219,6 +245,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VideosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources/$slug': {
+      id: '/resources/$slug'
+      path: '/resources/$slug'
+      fullPath: '/resources/$slug'
+      preLoaderRoute: typeof ResourcesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/': {
       id: '/services/'
       path: '/services'
@@ -245,6 +285,8 @@ const rootRouteChildren: RootRouteChildren = {
   RequestAQuoteRoute: RequestAQuoteRoute,
   TestimonialsRoute: TestimonialsRoute,
   VideosRoute: VideosRoute,
+  ResourcesRoute: ResourcesRoute,
+  ResourcesSlugRoute: ResourcesSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   ServicesIndexRoute: ServicesIndexRoute,
 }

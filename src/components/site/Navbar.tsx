@@ -11,6 +11,7 @@ const links = [
   { label: "Services", to: "/services" },
   { label: "Projects", to: "/projects" },
   { label: "Videos", to: "/videos" },
+  { label: "Resources", to: "/resources" }, // <-- Added the new Resources page
   // { label: "Testimonials", to: "/testimonials" },
   { label: "Contact", to: "/contact" },
 ] as const;
