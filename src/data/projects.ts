@@ -39,6 +39,37 @@ export type Project = {
  * To add a real photo: drop it in src/assets and swap the `image` value.
  */
 export const projects: Project[] = [
+  // CLIENT CORRECTION #3: Reordered projects #1, #2, and #3 with new titles/videos
+  {
+    slug: "step-by-step-abeokuta",
+    title: "Step by step 5 hrs borehole drilled in Abeokuta in 21 minutes",
+    location: "Abeokuta, Ogun State",
+    service: "Borehole Drilling",
+    image: heroDrilling, // Placeholder, swap with a real image later
+    youtubeUrl: "https://youtu.be/KNFW6G4ROw0",
+    featured: true,
+  },
+  {
+    slug: "kotopo",
+    title: "140 Meters Borehole Drilled at Kotopo Abeokuta Ogun State",
+    location: "Kotopo, Abeokuta",
+    service: "Borehole Drilling",
+    depth: "140 m",
+    image: kotopoImage,
+    youtubeUrl: "https://youtu.be/zD5IFZsFj8U",
+    featured: true,
+  },
+  {
+    slug: "where-others-failed",
+    title: "We drilled borehole where others failed",
+    location: "Abeokuta, Ogun State",
+    service: "Borehole Drilling",
+    image: heroDrilling, // Placeholder, swap with a real image later
+    youtubeUrl: "https://youtu.be/en-lNGF_HAU",
+    featured: true,
+  },
+
+  // THE REST OF THE PROJECTS
   {
     slug: "film-village-alabata",
     title: "150-Metre Borehole — Film Village, Alabata, Abeokuta",
@@ -76,16 +107,6 @@ export const projects: Project[] = [
     depth: "120 m",
     image: oloyedeImage,
     youtubeUrl: "https://www.youtube.com/watch?v=Pp2cYeJzXIs",
-    featured: true,
-  },
-  {
-    slug: "kotopo",
-    title: "140-Metre Borehole — Kotopo, Abeokuta",
-    location: "Kotopo, Abeokuta",
-    service: "Borehole Drilling",
-    depth: "140 m",
-    image: kotopoImage,
-    youtubeUrl: "https://www.youtube.com/watch?v=zD5IFZsFj8U",
     featured: true,
   },
   {
