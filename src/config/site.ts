@@ -15,17 +15,18 @@ export const siteConfig = {
   /** Set to true once the custom domain is connected and serving. */
   domainIsLive: false,
 
-  tagline: "Professional borehole drilling and water solutions in Ogun State",
+  tagline: "Professional borehole drilling and water solutions in Nigeria",
   description:
-    "Achievers Geotechnical Services Ltd provides professional borehole drilling, water surveys, pump installation, casing, borehole maintenance and irrigation solutions across Abeokuta and Ogun State.",
+    "Achievers Geotechnical Services Ltd provides professional borehole drilling, water surveys, pump installation, casing, borehole maintenance and irrigation solutions across Nigeria.",
 
   contact: {
     phones: ["+234 705 555 4407", "+234 701 159 3569", "+234 810 002 9295"],
     email: "achieversgeotec@gmail.com",
-    whatsapp: "2348033036185",
-    whatsappDisplay: "+234 803 303 6185",
+    // CLIENT CORRECTION #2 & #4: Changed WhatsApp number to the requested one
+    whatsapp: "2347055554407",
+    whatsappDisplay: "+234 705 555 4407",
     location: "Abeokuta, Ogun State, Nigeria",
-    serviceArea: "Abeokuta and most towns across Ogun State",
+    serviceArea: "Countrywide coverage across Nigeria",
     hours: [
       { days: "Monday – Saturday", time: "8:00 AM – 6:00 PM" },
       { days: "Sunday", time: "Closed" },
