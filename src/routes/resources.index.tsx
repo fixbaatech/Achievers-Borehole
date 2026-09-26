@@ -7,7 +7,8 @@ import { CtaBand } from "@/components/site/CtaBand";
 import { blogPosts } from "@/data/resources";
 import { pageMeta } from "@/lib/seo";
 
-export const Route = createFileRoute("/resources")({
+// Notice the trailing slash in "/resources/" below!
+export const Route = createFileRoute("/resources/")({
   head: () =>
     pageMeta({
       title: "Borehole Resources & Insights | Achievers Geotechnical",
@@ -35,7 +36,6 @@ function ResourcesPage() {
             {blogPosts.map((post, i) => (
               <Reveal key={post.slug} delay={i * 80} className="flex">
                 <Link
-                  // This link will point to the individual article page we will build next
                   to={`/resources/${post.slug}`} 
                   className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md ring-1 ring-border"
                 >
