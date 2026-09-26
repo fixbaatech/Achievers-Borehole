@@ -13,7 +13,8 @@ import kemtaImage from "@/assets/achievers-borehole-kemta.png";
 import kotopoImage from "@/assets/achievers-borehole-kotopo.png";
 import obadaImage from "@/assets/achievers-borehole-obada.png";
 import obantokoImage from "@/assets/achievers-borehole-obantoko.png";
-import heroDrilling from "@/assets/hero-drilling.jpg";
+import schoolBoreholeDrilling from "@/assets/school-borehole.png";
+import waterGushing from "@/assets/schoolBoreholeDrilling ";
 
 export type Project = {
   slug: string;
@@ -37,7 +38,7 @@ export const projects: Project[] = [
     title: "Step by step 5 hrs borehole drilled in Abeokuta in 21 minutes",
     location: "Abeokuta, Ogun State",
     service: "Borehole Drilling",
-    image: heroDrilling,
+    image: waterGushing,
     youtubeUrl: "https://youtu.be/KNFW6G4ROw0",
     featured: true,
   },
@@ -56,7 +57,7 @@ export const projects: Project[] = [
     title: "We drilled borehole where others failed",
     location: "Abeokuta, Ogun State",
     service: "Borehole Drilling",
-    image: heroDrilling,
+    image: schoolBoreholeDrilling,
     youtubeUrl: "https://youtu.be/en-lNGF_HAU",
     featured: true,
   },
