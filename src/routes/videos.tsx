@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { PlayCircle, Loader2, Youtube, Pin } from "lucide-react";
+import { PlayCircle, Loader2, Youtube, Star } from "lucide-react";
 import heroDrilling from "@/assets/hero-drilling.jpg";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
@@ -17,7 +17,7 @@ export const Route = createFileRoute("/videos")({
   component: VideosPage,
 });
 
-// No API Key Required! 
+// Secure RSS fetch (No API Key Required - 100% Hacker Proof)
 const CHANNEL_ID = "UCwEwqnjjb0XPJU2b1O1LfDw";
 const RSS_URL = `https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.youtube.com%2Ffeeds%2Fvideos.xml%3Fchannel_id%3D${CHANNEL_ID}`;
 
@@ -29,21 +29,22 @@ type YouTubeVideo = {
   pubDate: string;
 };
 
-// 📌 ADD YOUR PINNED VIDEOS HERE
-const PINNED_VIDEOS: YouTubeVideo[] = [
+// ⭐ FEATURED VIDEOS
+// These two videos are permanently locked to the top of the page.
+const FEATURED_VIDEOS: YouTubeVideo[] = [
   {
-    id: "YOUR_VIDEO_ID_1", 
-    title: "Our Biggest Drilling Project in Ogun State",
-    link: "https://www.youtube.com/watch?v=YOUR_VIDEO_ID_1",
-    thumbnail: "https://i.ytimg.com/vi/YOUR_VIDEO_ID_1/hqdefault.jpg", 
-    pubDate: "2026-01-01T00:00:00Z"
+    id: "pDLZ0-rG52Y", 
+    title: "Best borehole drilling company in Abeokuta, Ogun State",
+    link: "https://www.youtube.com/watch?v=pDLZ0-rG52Y",
+    thumbnail: "https://i.ytimg.com/vi/pDLZ0-rG52Y/hqdefault.jpg", 
+    pubDate: "2026-09-26T00:00:00Z"
   },
   {
-    id: "YOUR_VIDEO_ID_2",
-    title: "Complete Water Treatment System Installation",
-    link: "https://www.youtube.com/watch?v=YOUR_VIDEO_ID_2",
-    thumbnail: "https://i.ytimg.com/vi/YOUR_VIDEO_ID_2/hqdefault.jpg",
-    pubDate: "2026-02-01T00:00:00Z"
+    id: "KNFW6G4ROw0",
+    title: "Step by step 5 hrs borehole drilled in Abeokuta in 21 minutes #boreholeinstallation#boreholedrilling",
+    link: "https://www.youtube.com/watch?v=KNFW6G4ROw0",
+    thumbnail: "https://i.ytimg.com/vi/KNFW6G4ROw0/hqdefault.jpg",
+    pubDate: "2026-06-21T00:00:00Z"
   }
 ];
 
@@ -59,9 +60,7 @@ function VideosPage() {
         const data = await response.json();
         
         if (data.status === "ok") {
-          // Format RSS data to match our component structure
           const fetchedVideos = data.items.map((item: any) => {
-            // Extract Video ID from the link
             const videoId = item.link.split('v=')[1];
             return {
               id: videoId,
@@ -72,9 +71,9 @@ function VideosPage() {
             };
           });
 
-          // Filter out videos that are already pinned
+          // Filter out videos that are already featured so they don't show up twice
           const uniqueFetchedVideos = fetchedVideos.filter(
-            (fetched: YouTubeVideo) => !PINNED_VIDEOS.some((pinned) => pinned.id === fetched.id)
+            (fetched: YouTubeVideo) => !FEATURED_VIDEOS.some((featured) => featured.id === fetched.id)
           );
 
           setVideos(uniqueFetchedVideos);
@@ -91,7 +90,7 @@ function VideosPage() {
     fetchVideos();
   }, []);
 
-  const displayVideos = [...PINNED_VIDEOS, ...videos];
+  const displayVideos = [...FEATURED_VIDEOS, ...videos];
 
   return (
     <>
@@ -136,7 +135,7 @@ function VideosPage() {
               {/* Videos Grid */}
               <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 w-full">
                 {displayVideos.map((video, i) => {
-                  const isPinned = i < PINNED_VIDEOS.length;
+                  const isFeatured = i < FEATURED_VIDEOS.length;
                   
                   return (
                     <Reveal key={`${video.id}-${i}`} delay={(i % 9) * 50} className="flex">
@@ -144,7 +143,7 @@ function VideosPage() {
                         href={video.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md ring-1 ${isPinned ? 'ring-teal-deep/50 shadow-teal-deep/10' : 'ring-border'}`}
+                        className={`group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md ring-1 ${isFeatured ? 'ring-teal-deep/50 shadow-teal-deep/10' : 'ring-border'}`}
                       >
                         <div className="relative aspect-video overflow-hidden bg-muted">
                           <img
@@ -156,9 +155,9 @@ function VideosPage() {
                           <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/10">
                             <PlayCircle className="h-12 w-12 text-white shadow-sm drop-shadow-md transition-transform group-hover:scale-110" />
                           </div>
-                          {isPinned && (
+                          {isFeatured && (
                             <div className="absolute top-3 right-3 bg-teal-deep text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-md">
-                              <Pin className="w-3 h-3 fill-current" /> Featured
+                              <Star className="w-3 h-3 fill-current" /> Featured
                             </div>
                           )}
                         </div>
