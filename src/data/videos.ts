@@ -35,13 +35,6 @@ function VideosPage() {
 
   useEffect(() => {
     async function fetchVideos() {
-      // If the channel ID hasn't been set yet, don't try to fetch
-      if (CHANNEL_ID === "YOUR_YOUTUBE_CHANNEL_ID_HERE") {
-        setLoading(false);
-        setError(true);
-        return;
-      }
-
       try {
         const response = await fetch(RSS_URL);
         const data = await response.json();
