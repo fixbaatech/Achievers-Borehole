@@ -1,132 +1,56 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { PlayCircle, Loader2 } from "lucide-react";
-import heroDrilling from "@/assets/hero-drilling.jpg";
-import { PageHero } from "@/components/site/PageHero";
-import { Reveal } from "@/components/site/Reveal";
-import { CtaBand } from "@/components/site/CtaBand";
-import { pageMeta } from "@/lib/seo";
+import { siteConfig } from "@/config/site";
 
-export const Route = createFileRoute("/videos")({
-  head: () =>
-    pageMeta({
-      title: "Video Gallery | Achievers Geotechnical",
-      description: "Watch our latest borehole drilling and water system projects across Nigeria.",
-      path: "/videos",
-    }),
-  component: VideosPage,
-});
+export type VideoCategory =
+  | "Recent Projects"
+  | "Drilling in Action"
+  | "Technical & Educational"
+  | "Project Stories";
 
-// Automatically fetches from the Achievers Geotechnical Services YouTube Channel
-const CHANNEL_ID = "UCwEwqnjjb0XPJU2b1O1LfDw";
-const RSS_URL = `https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.youtube.com%2Ffeeds%2Fvideos.xml%3Fchannel_id%3D${CHANNEL_ID}`;
-
-type YouTubeVideo = {
+export type Video = {
   title: string;
-  link: string;
-  thumbnail: string;
-  pubDate: string;
+  category: VideoCategory;
+  /**
+   * YouTube video ID. Leave empty until the real ID is added — the card then
+   * links out to the channel instead of embedding a player.
+   */
+  youtubeId?: string;
+  note?: string;
 };
 
-function VideosPage() {
-  const [videos, setVideos] = useState<YouTubeVideo[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+export const videoCategories: VideoCategory[] = [
+  "Recent Projects",
+  "Drilling in Action",
+  "Technical & Educational",
+  "Project Stories",
+];
 
-  useEffect(() => {
-    async function fetchVideos() {
-      try {
-        const response = await fetch(RSS_URL);
-        const data = await response.json();
-        
-        if (data.status === "ok") {
-          setVideos(data.items);
-        } else {
-          setError(true);
-        }
-      } catch (err) {
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
-    }
+/**
+ * Video titles as listed by Achievers. Add the `youtubeId` for each one to
+ * enable the lazy-loaded embedded player (nothing else needs changing).
+ */
+export const videos: Video[] = [
+  // RECENT PROJECTS
+  { title: "210m Borehole — Panseke, Abeokuta", category: "Recent Projects", youtubeId: "UE3Zrql-45E" },
+  { title: "150m Borehole — Film Village, Alabata", category: "Recent Projects", youtubeId: "zKWSFoMkAVA" },
+  { title: "140m Borehole — Kotopo, Abeokuta", category: "Recent Projects", youtubeId: "zD5IFZsFj8U" },
+  { title: "120m Borehole — Oloyede/Olorunsogo", category: "Recent Projects", youtubeId: "Pp2cYeJzXIs" },
+  { title: "100m Borehole — Soyoye, Abeokuta", category: "Recent Projects", youtubeId: "w5MpYK8v83k" },
+  { title: "Borehole Drilled at Ogere", category: "Recent Projects", youtubeId: "5yuVggrF0u0" },
 
-    fetchVideos();
-  }, []);
+  // DRILLING IN ACTION
+  { title: "Cway Dairy Farm Borehole Drilling", category: "Drilling in Action", youtubeId: "2TaBGHZ-48A" },
+  { title: "FUNAAB Farm Water System Installation", category: "Drilling in Action", youtubeId: "hiqBs9YUfGA" },
+  { title: "Obada Borehole Project Execution", category: "Drilling in Action", youtubeId: "fXUegdEy2RM" },
+  { title: "Obantoko Water Solution Drilling", category: "Drilling in Action", youtubeId: "Sco6TWePbS0" },
 
-  return (
-    <>
-      <PageHero
-        eyebrow="Our Work"
-        title="Project Videos"
-        lede="Watch our teams in action on sites across Ogun State and beyond."
-        image={heroDrilling}
-        breadcrumbs={[{ label: "Home", to: "/" }, { label: "Videos" }]}
-      />
+  // PROJECT STORIES
+  { title: "Egba Comprehensive High School Water Project", category: "Project Stories", youtubeId: "ZzLrSj3QXUQ" },
+  { title: "Ibara Housing Estate (95m Borehole)", category: "Project Stories", youtubeId: "uBcUE368LLc" },
+  { title: "Harmony Estate Road Community Borehole", category: "Project Stories", youtubeId: "zo-xAVl_UeA" },
 
-      <section className="section surface-muted">
-        <div className="shell">
-          {loading ? (
-            <div className="flex h-64 items-center justify-center flex-col gap-4">
-              <Loader2 className="h-10 w-10 animate-spin text-teal-deep" />
-              <p className="text-muted-foreground font-medium">Loading latest videos from YouTube...</p>
-            </div>
-          ) : error || videos.length === 0 ? (
-            <div className="flex h-64 items-center justify-center flex-col gap-4 bg-white rounded-2xl border border-dashed border-border p-8 text-center shadow-sm">
-              <p className="text-muted-foreground font-medium">
-                Unable to load latest videos at this time.
-              </p>
-              <a 
-                href="https://www.youtube.com/@AchieversGeotechnicalServices" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="btn btn-outline mt-2"
-              >
-                Visit our YouTube Channel Directly
-              </a>
-            </div>
-          ) : (
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {videos.map((video, i) => (
-                <Reveal key={video.link} delay={i * 50} className="flex">
-                  <a
-                    href={video.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md ring-1 ring-border"
-                  >
-                    <div className="relative aspect-video overflow-hidden bg-muted">
-                      <img
-                        src={video.thumbnail}
-                        alt={video.title}
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/10">
-                        <PlayCircle className="h-12 w-12 text-white shadow-sm drop-shadow-md transition-transform group-hover:scale-110" />
-                      </div>
-                    </div>
-                    <div className="p-5 flex flex-col flex-1">
-                      <h3 className="font-display text-lg font-bold leading-tight text-navy-deep group-hover:text-teal-deep transition-colors line-clamp-2">
-                        {video.title}
-                      </h3>
-                      <p className="mt-auto pt-3 text-xs font-medium text-muted-foreground">
-                        {new Date(video.pubDate).toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric'
-                        })}
-                      </p>
-                    </div>
-                  </a>
-                </Reveal>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
+  // TECHNICAL & EDUCATIONAL
+  { title: "Idi Aba Drilling & Technical Setup", category: "Technical & Educational", youtubeId: "LGTSfiFVdNc" },
+  { title: "Kemta Idi Aba Complex Water Setup", category: "Technical & Educational", youtubeId: "39ATA2bTnmY" },
+];
 
-      <CtaBand />
-    </>
-  );
-}
+export const channelUrl = `${siteConfig.social.youtube}/videos`;
