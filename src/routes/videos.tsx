@@ -29,21 +29,14 @@ type YouTubeVideo = {
 
 // 100% Bulletproof Static Data - No APIs, No Proxies, Instant Loading
 const VIDEOS_DATA: YouTubeVideo[] = [
+  // ⭐ FEATURED VIDEOS
   {
-    id: "YkF0P-1q2W8", 
-    title: "120 meters borehole Drilling at Kemta Idi-Aba October 15, 2026",
-    link: "https://www.youtube.com/watch?v=YkF0P-1q2W8",
-    thumbnail: "https://i.ytimg.com/vi/YkF0P-1q2W8/hqdefault.jpg",
-    pubDate: "October 15, 2026",
-    isFeatured: true
-  },
-  {
-    id: "9_ouH3g0tlw", 
+    id: "9_ouH3g0tlw",
     title: "Best borehole drilling company in Abeokuta Ogun State October 6, 2026",
     link: "https://www.youtube.com/watch?v=9_ouH3g0tlw",
-    thumbnail: "https://i.ytimg.com/vi/9_ouH3g0tlw/hqdefault.jpg", 
+    thumbnail: "https://i.ytimg.com/vi/9_ouH3g0tlw/hqdefault.jpg",
     pubDate: "October 6, 2026",
-    isFeatured: true
+    isFeatured: true,
   },
   {
     id: "KNFW6G4ROw0",
@@ -51,26 +44,58 @@ const VIDEOS_DATA: YouTubeVideo[] = [
     link: "https://www.youtube.com/watch?v=KNFW6G4ROw0",
     thumbnail: "https://i.ytimg.com/vi/KNFW6G4ROw0/hqdefault.jpg",
     pubDate: "June 21, 2026",
-    isFeatured: false
+    isFeatured: true,
+  },
+
+  // 📹 RECENT PROJECT VIDEOS
+  {
+    id: "5kAgGSvwuVE",
+    title: "120 meters borehole Drilling at Kemta Idi-Aba October 15, 2026",
+    link: "https://www.youtube.com/watch?v=5kAgGSvwuVE",
+    thumbnail: "https://i.ytimg.com/vi/5kAgGSvwuVE/hqdefault.jpg",
+    pubDate: "October 15, 2026",
+    isFeatured: false,
   },
   {
-    // You can update this ID later with another video from the channel
-    id: "B8fXg6L1HhA", 
-    title: "Geophysical Water Survey and Borehole Drilling Process", 
-    link: "https://www.youtube.com/watch?v=B8fXg6L1HhA",
-    thumbnail: "https://i.ytimg.com/vi/B8fXg6L1HhA/hqdefault.jpg",
-    pubDate: "May 14, 2026", 
-    isFeatured: false
+    id: "zD5IFZsFj8U",
+    title: "140 Meters Borehole Drilled at Kotopo Abeokuta Ogun State September 14, 2026",
+    link: "https://www.youtube.com/watch?v=zD5IFZsFj8U",
+    thumbnail: "https://i.ytimg.com/vi/zD5IFZsFj8U/hqdefault.jpg",
+    pubDate: "September 14, 2026",
+    isFeatured: false,
   },
   {
-    // You can update this ID later with another video from the channel
-    id: "A1bC2dE3fG4", 
-    title: "Installing Submersible Pumps in Ogun State", 
-    link: "https://www.youtube.com/watch?v=A1bC2dE3fG4",
-    thumbnail: "https://i.ytimg.com/vi/A1bC2dE3fG4/hqdefault.jpg",
-    pubDate: "April 2, 2026", 
-    isFeatured: false
-  }
+    id: "1IH-cen2clA",
+    title: "August 20, 2026",
+    link: "https://www.youtube.com/watch?v=1IH-cen2clA",
+    thumbnail: "https://i.ytimg.com/vi/1IH-cen2clA/hqdefault.jpg",
+    pubDate: "August 20, 2026",
+    isFeatured: false,
+  },
+  {
+    id: "UE3Zrql-45E",
+    title: "210 Meters Borehole Drilled at Pansake Abeokuta Ogun State July 30, 2026",
+    link: "https://www.youtube.com/watch?v=UE3Zrql-45E",
+    thumbnail: "https://i.ytimg.com/vi/UE3Zrql-45E/hqdefault.jpg",
+    pubDate: "July 30, 2026",
+    isFeatured: false,
+  },
+  {
+    id: "ZzLrSj3QXUQ",
+    title: "Egba Comprehensive high school Asero Borehole Drilling July 3, 2026",
+    link: "https://www.youtube.com/watch?v=ZzLrSj3QXUQ",
+    thumbnail: "https://i.ytimg.com/vi/ZzLrSj3QXUQ/hqdefault.jpg",
+    pubDate: "July 3, 2026",
+    isFeatured: false,
+  },
+  {
+    id: "Q9ON2PObpN8",
+    title: "80 meters Borehole Drilled at Toloko Village on the 26th of June, 2026",
+    link: "https://www.youtube.com/watch?v=Q9ON2PObpN8",
+    thumbnail: "https://i.ytimg.com/vi/Q9ON2PObpN8/hqdefault.jpg",
+    pubDate: "June 26, 2026",
+    isFeatured: false,
+  },
 ];
 
 function VideosPage() {
@@ -88,15 +113,15 @@ function VideosPage() {
         <div className="shell">
           
           <div className="flex justify-end mb-8">
-             <a 
-                href={`https://www.youtube.com/channel/${CHANNEL_ID}`}
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="btn btn-primary gap-2"
-              >
-                <Youtube className="w-5 h-5" />
-                Subscribe to our YouTube Channel
-              </a>
+            <a 
+              href={`https://www.youtube.com/channel/${CHANNEL_ID}`}
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="btn btn-primary gap-2"
+            >
+              <Youtube className="w-5 h-5" />
+              Subscribe to our YouTube Channel
+            </a>
           </div>
 
           <div className="flex flex-col items-center gap-12">
@@ -109,7 +134,7 @@ function VideosPage() {
                     href={video.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md ring-1 ${video.isFeatured ? 'ring-teal-deep/50 shadow-teal-deep/10' : 'ring-border'}`}
+                    className={`group flex h-full w-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md ring-1 ${video.isFeatured ? 'ring-teal-deep/50 shadow-teal-deep/10' : 'ring-border'}`}
                   >
                     <div className="relative aspect-video overflow-hidden bg-muted">
                       <img
