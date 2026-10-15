@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PlayCircle, Youtube, Star } from "lucide-react";
+import { useEffect, useState } from "react";
+import { PlayCircle, Loader2, Youtube, Star } from "lucide-react";
 import heroDrilling from "@/assets/hero-drilling.jpg";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
@@ -24,57 +25,87 @@ type YouTubeVideo = {
   link: string;
   thumbnail: string;
   pubDate: string;
-  isFeatured?: boolean;
 };
 
-// 100% Bulletproof Static Data - No APIs, No Proxies, Instant Loading
-const VIDEOS_DATA: YouTubeVideo[] = [
+// ⭐ FEATURED VIDEOS
+// The broken video has been replaced with the October 6th Abeokuta drilling video.
+const FEATURED_VIDEOS: YouTubeVideo[] = [
   {
     id: "9_ouH3g0tlw", 
     title: "Best borehole drilling company in Abeokuta Ogun State October 6, 2026",
     link: "https://www.youtube.com/watch?v=9_ouH3g0tlw",
     thumbnail: "https://i.ytimg.com/vi/9_ouH3g0tlw/hqdefault.jpg", 
-    pubDate: "October 6, 2026",
-    isFeatured: true
+    pubDate: "2026-10-06T00:00:00Z"
   },
   {
     id: "KNFW6G4ROw0",
     title: "Step by step 5 hrs borehole drilled in Abeokuta in 21 minutes #boreholeinstallation#boreholedrilling",
     link: "https://www.youtube.com/watch?v=KNFW6G4ROw0",
     thumbnail: "https://i.ytimg.com/vi/KNFW6G4ROw0/hqdefault.jpg",
-    pubDate: "June 21, 2026",
-    isFeatured: true
-  },
-  {
-    // REPLACE THIS ID WITH A REAL VIDEO ID
-    id: "PASTE_VIDEO_3_ID_HERE", 
-    title: "Geophysical Water Survey and Borehole Drilling Process", // Update Title
-    link: "https://www.youtube.com/watch?v=PASTE_VIDEO_3_ID_HERE",
-    thumbnail: "https://i.ytimg.com/vi/PASTE_VIDEO_3_ID_HERE/hqdefault.jpg",
-    pubDate: "May 14, 2026", // Update Date
-    isFeatured: false
-  },
-  {
-    // REPLACE THIS ID WITH A REAL VIDEO ID
-    id: "PASTE_VIDEO_4_ID_HERE", 
-    title: "Installing Submersible Pumps in Ogun State", // Update Title
-    link: "https://www.youtube.com/watch?v=PASTE_VIDEO_4_ID_HERE",
-    thumbnail: "https://i.ytimg.com/vi/PASTE_VIDEO_4_ID_HERE/hqdefault.jpg",
-    pubDate: "April 2, 2026", // Update Date
-    isFeatured: false
-  },
-  {
-    // REPLACE THIS ID WITH A REAL VIDEO ID
-    id: "PASTE_VIDEO_5_ID_HERE", 
-    title: "Why Borehole Flushing is Important for Clean Water", // Update Title
-    link: "https://www.youtube.com/watch?v=PASTE_VIDEO_5_ID_HERE",
-    thumbnail: "https://i.ytimg.com/vi/PASTE_VIDEO_5_ID_HERE/hqdefault.jpg",
-    pubDate: "February 18, 2026", // Update Date
-    isFeatured: false
+    pubDate: "2026-06-21T00:00:00Z"
   }
 ];
 
 function VideosPage() {
+  const [videos, setVideos] = useState<YouTubeVideo[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    async function fetchVideos() {
+      try {
+        // Fetch raw XML directly from YouTube using a secure proxy to bypass browser blocks
+        const YOUTUBE_RSS = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
+        const PROXY_URL = `https://api.allorigins.win/raw?url=${encodeURIComponent(YOUTUBE_RSS)}`;
+        
+        const response = await fetch(PROXY_URL);
+        if (!response.ok) throw new Error("Failed to fetch RSS feed");
+        
+        const xmlText = await response.text();
+        
+        // Translate the XML code natively inside the user's browser
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+        const entries = Array.from(xmlDoc.querySelectorAll("entry"));
+        
+        if (entries.length > 0) {
+          const fetchedVideos: YouTubeVideo[] = entries.map((entry) => {
+            const link = entry.querySelector("link")?.getAttribute("href") || "";
+            const videoId = link.split("v=")[1] || "";
+            const title = entry.querySelector("title")?.textContent || "Achievers Geotechnical Video";
+            const pubDate = entry.querySelector("published")?.textContent || new Date().toISOString();
+            
+            return {
+              id: videoId,
+              title: title,
+              link: link,
+              thumbnail: `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+              pubDate: pubDate,
+            };
+          });
+
+          // Prevent duplicates by hiding any video that is already manually featured above
+          const uniqueFetchedVideos = fetchedVideos.filter(
+            (fetched: YouTubeVideo) => !FEATURED_VIDEOS.some((featured) => featured.id === fetched.id)
+          );
+
+          setVideos(uniqueFetchedVideos);
+        } else {
+          setError(true);
+        }
+      } catch (err) {
+        console.error("Video fetch error:", err);
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchVideos();
+  }, []);
+
+  const displayVideos = [...FEATURED_VIDEOS, ...videos];
+
   return (
     <>
       <PageHero
@@ -100,59 +131,79 @@ function VideosPage() {
               </a>
           </div>
 
-          <div className="flex flex-col items-center gap-12">
-            
-            {/* Videos Grid - Renders Instantly */}
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 w-full">
-              {VIDEOS_DATA.map((video, i) => (
-                <Reveal key={`${video.id}-${i}`} delay={(i % 9) * 50} className="flex">
-                  <a
-                    href={video.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md ring-1 ${video.isFeatured ? 'ring-teal-deep/50 shadow-teal-deep/10' : 'ring-border'}`}
-                  >
-                    <div className="relative aspect-video overflow-hidden bg-muted">
-                      <img
-                        src={video.thumbnail}
-                        alt={video.title}
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/10">
-                        <PlayCircle className="h-12 w-12 text-white shadow-sm drop-shadow-md transition-transform group-hover:scale-110" />
-                      </div>
-                      {video.isFeatured && (
-                        <div className="absolute top-3 right-3 bg-teal-deep text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-md">
-                          <Star className="w-3 h-3 fill-current" /> Featured
+          {loading ? (
+            <div className="flex h-64 items-center justify-center flex-col gap-4">
+              <Loader2 className="h-10 w-10 animate-spin text-teal-deep" />
+              <p className="text-muted-foreground font-medium">Loading project videos...</p>
+            </div>
+          ) : error && videos.length === 0 ? (
+            <div className="flex h-64 items-center justify-center flex-col gap-4 bg-white rounded-2xl border border-dashed border-border p-8 text-center shadow-sm">
+              <p className="text-muted-foreground font-medium">
+                Unable to load videos at this time.
+              </p>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center gap-12">
+              
+              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 w-full">
+                {displayVideos.map((video, i) => {
+                  const isFeatured = i < FEATURED_VIDEOS.length;
+                  
+                  return (
+                    <Reveal key={`${video.id}-${i}`} delay={(i % 9) * 50} className="flex">
+                      <a
+                        href={video.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md ring-1 ${isFeatured ? 'ring-teal-deep/50 shadow-teal-deep/10' : 'ring-border'}`}
+                      >
+                        <div className="relative aspect-video overflow-hidden bg-muted">
+                          <img
+                            src={video.thumbnail}
+                            alt={video.title}
+                            loading="lazy"
+                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/10">
+                            <PlayCircle className="h-12 w-12 text-white shadow-sm drop-shadow-md transition-transform group-hover:scale-110" />
+                          </div>
+                          {isFeatured && (
+                            <div className="absolute top-3 right-3 bg-teal-deep text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-md">
+                              <Star className="w-3 h-3 fill-current" /> Featured
+                            </div>
+                          )}
                         </div>
-                      )}
-                    </div>
-                    <div className="p-5 flex flex-col flex-1">
-                      <h3 className="font-display text-lg font-bold leading-tight text-navy-deep group-hover:text-teal-deep transition-colors line-clamp-2">
-                        {video.title}
-                      </h3>
-                      <p className="mt-auto pt-3 text-xs font-medium text-muted-foreground">
-                        {video.pubDate}
-                      </p>
-                    </div>
-                  </a>
-                </Reveal>
-              ))}
-            </div>
+                        <div className="p-5 flex flex-col flex-1">
+                          <h3 className="font-display text-lg font-bold leading-tight text-navy-deep group-hover:text-teal-deep transition-colors line-clamp-2">
+                            {video.title}
+                          </h3>
+                          <p className="mt-auto pt-3 text-xs font-medium text-muted-foreground">
+                            {new Date(video.pubDate).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric'
+                            })}
+                          </p>
+                        </div>
+                      </a>
+                    </Reveal>
+                  );
+                })}
+              </div>
 
-            <div className="flex justify-center w-full pt-4">
-              <a 
-                href={`https://www.youtube.com/channel/${CHANNEL_ID}`}
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="btn btn-outline gap-2 min-w-[200px]"
-              >
-                <Youtube className="w-5 h-5 text-red-600" />
-                Watch All Videos on YouTube
-              </a>
+              <div className="flex justify-center w-full pt-4">
+                <a 
+                  href={`https://www.youtube.com/channel/${CHANNEL_ID}`}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="btn btn-outline gap-2 min-w-[200px]"
+                >
+                  <Youtube className="w-5 h-5 text-red-600" />
+                  Watch All Videos on YouTube
+                </a>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
 
