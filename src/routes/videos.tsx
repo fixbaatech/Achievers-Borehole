@@ -17,9 +17,7 @@ export const Route = createFileRoute("/videos")({
   component: VideosPage,
 });
 
-// Secure RSS fetch (No API Key Required - 100% Hacker Proof)
 const CHANNEL_ID = "UCwEwqnjjb0XPJU2b1O1LfDw";
-const RSS_URL = `https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.youtube.com%2Ffeeds%2Fvideos.xml%3Fchannel_id%3D${CHANNEL_ID}`;
 
 type YouTubeVideo = {
   id: string;
@@ -56,18 +54,34 @@ function VideosPage() {
   useEffect(() => {
     async function fetchVideos() {
       try {
-        const response = await fetch(RSS_URL);
-        const data = await response.json();
+        // We use allorigins.win to bypass CORS and fetch the raw YouTube XML feed directly.
+        // This completely removes the flaky rss2json middleman that was causing the load errors.
+        const YOUTUBE_RSS = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
+        const PROXY_URL = `https://api.allorigins.win/raw?url=${encodeURIComponent(YOUTUBE_RSS)}`;
         
-        if (data.status === "ok") {
-          const fetchedVideos = data.items.map((item: any) => {
-            const videoId = item.link.split('v=')[1];
+        const response = await fetch(PROXY_URL);
+        if (!response.ok) throw new Error("Failed to fetch RSS feed");
+        
+        const xmlText = await response.text();
+        
+        // Parse the raw XML natively in the browser
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+        const entries = Array.from(xmlDoc.querySelectorAll("entry"));
+        
+        if (entries.length > 0) {
+          const fetchedVideos: YouTubeVideo[] = entries.map((entry) => {
+            const link = entry.querySelector("link")?.getAttribute("href") || "";
+            const videoId = link.split("v=")[1] || "";
+            const title = entry.querySelector("title")?.textContent || "Achievers Geotechnical Video";
+            const pubDate = entry.querySelector("published")?.textContent || new Date().toISOString();
+            
             return {
               id: videoId,
-              title: item.title,
-              link: item.link,
+              title: title,
+              link: link,
               thumbnail: `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
-              pubDate: item.pubDate,
+              pubDate: pubDate,
             };
           });
 
@@ -81,6 +95,7 @@ function VideosPage() {
           setError(true);
         }
       } catch (err) {
+        console.error("Video fetch error:", err);
         setError(true);
       } finally {
         setLoading(false);
