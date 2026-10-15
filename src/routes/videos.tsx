@@ -28,14 +28,14 @@ type YouTubeVideo = {
 };
 
 // ⭐ FEATURED VIDEOS
-// These two videos are permanently locked to the top of the page.
+// The broken video has been replaced with the October 6th Abeokuta drilling video.
 const FEATURED_VIDEOS: YouTubeVideo[] = [
   {
-    id: "pDLZ0-rG52Y", 
-    title: "Best borehole drilling company in Abeokuta, Ogun State",
-    link: "https://www.youtube.com/watch?v=pDLZ0-rG52Y",
-    thumbnail: "https://i.ytimg.com/vi/pDLZ0-rG52Y/hqdefault.jpg", 
-    pubDate: "2026-09-26T00:00:00Z"
+    id: "9_ouH3g0tlw", 
+    title: "Best borehole drilling company in Abeokuta Ogun State October 6, 2026",
+    link: "https://www.youtube.com/watch?v=9_ouH3g0tlw",
+    thumbnail: "https://i.ytimg.com/vi/9_ouH3g0tlw/hqdefault.jpg", 
+    pubDate: "2026-10-06T00:00:00Z"
   },
   {
     id: "KNFW6G4ROw0",
@@ -54,8 +54,7 @@ function VideosPage() {
   useEffect(() => {
     async function fetchVideos() {
       try {
-        // We use allorigins.win to bypass CORS and fetch the raw YouTube XML feed directly.
-        // This completely removes the flaky rss2json middleman that was causing the load errors.
+        // Fetch raw XML directly from YouTube using a secure proxy to bypass browser blocks
         const YOUTUBE_RSS = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
         const PROXY_URL = `https://api.allorigins.win/raw?url=${encodeURIComponent(YOUTUBE_RSS)}`;
         
@@ -64,7 +63,7 @@ function VideosPage() {
         
         const xmlText = await response.text();
         
-        // Parse the raw XML natively in the browser
+        // Translate the XML code natively inside the user's browser
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(xmlText, "text/xml");
         const entries = Array.from(xmlDoc.querySelectorAll("entry"));
@@ -85,7 +84,7 @@ function VideosPage() {
             };
           });
 
-          // Filter out videos that are already featured so they don't show up twice
+          // Prevent duplicates by hiding any video that is already manually featured above
           const uniqueFetchedVideos = fetchedVideos.filter(
             (fetched: YouTubeVideo) => !FEATURED_VIDEOS.some((featured) => featured.id === fetched.id)
           );
@@ -120,7 +119,6 @@ function VideosPage() {
       <section className="section surface-muted">
         <div className="shell">
           
-          {/* Top Call to Action */}
           <div className="flex justify-end mb-8">
              <a 
                 href={`https://www.youtube.com/channel/${CHANNEL_ID}`}
@@ -147,7 +145,6 @@ function VideosPage() {
           ) : (
             <div className="flex flex-col items-center gap-12">
               
-              {/* Videos Grid */}
               <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 w-full">
                 {displayVideos.map((video, i) => {
                   const isFeatured = i < FEATURED_VIDEOS.length;
@@ -194,7 +191,6 @@ function VideosPage() {
                 })}
               </div>
 
-              {/* Bottom Channel Action */}
               <div className="flex justify-center w-full pt-4">
                 <a 
                   href={`https://www.youtube.com/channel/${CHANNEL_ID}`}
